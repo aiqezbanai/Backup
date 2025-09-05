@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-  <meta charset="UTF-8">
-  <title>AI QEZ BACKUP</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI QEZ BACKUP</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for a clean look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@100..900&display=swap" rel="stylesheet">
-  <style>
-    #tool { display: none; }
-    #maintenance { display: none; font-size: 22px; color: red; text-align: center; margin-top: 50px; }
-      @keyframes fade-in-scale {
+    <style>
+        /* General styles */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Animation for modals */
+        @keyframes fade-in-scale {
             from {
                 opacity: 0;
                 transform: scale(0.95);
@@ -26,18 +26,11 @@
         .animate-fade-in-scale {
             animation: fade-in-scale 0.3s forwards;
         }
-        /* Custom styles to apply the font and ensure full height */
-        body {
-            font-family: "Noto Sans Armenian", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: <weight>;
-            font-style: normal;
-            font-variation-settings:
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
 
-        /* Full-screen background container */
+        /* Styles for the Maintenance page, adapted from Maintenance.html */
+        .maintenance-body {
+            font-family: "Verdana", sans-serif;
+        }
         .background-container {
             position: fixed;
             top: 0;
@@ -49,8 +42,6 @@
             background-size: cover;
             background-position: center;
         }
-
-        /* Semi-transparent overlay */
         .overlay {
             position: absolute;
             top: 0;
@@ -59,72 +50,9 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5); /* 50% black transparency */
         }
-  </style>
+    </style>
 </head>
 <body class="bg-gray-900">
-  <div id="tool">
-<h2 className="text-3xl font-bold text-white mb-4">AI QEZ BACKUP</h2>
-                        <p className="text-gray-400 text-lg">Անվտանգ պահուստավորման կառավարման ծրագիր՝ գաղտնաբառով պաշտպանված:</p>
-                        <p className="text-gray-400 text-lg">Իրական ժամանակի վերահսկմամբ և ամբողջական հնարավորություններով ձեր տեղական պահեստի համար։</p>
-  </div>
-
-  <div id="maintenance">
-    <h1>Տեխնիկական Սպասարկում</h1>
-    <p>Մեր կայքը ներկայումս ենթարկվում է տեխնիկական սպասարկման։</p>
-    <p>Մենք աշխատում ենք մեր ծառայությունները բարելավելու ուղղությամբ և շուտով կլինենք հասանելի:</p>
-    <p>Խնդրում ենք վերադառնալ սահմանված ժամկետից հետո։</p>
-  </div>
-
-    <!-- Main Content Wrapper -->
-    <div class="flex flex-col min-h-screen justify-between p-4 sm:p-6 md:p-8">
-
-        <!-- Header Content -->
-        <header class="text-center w-full max-w-5xl mx-auto pt-10">
-            <!-- This space can be used for a logo if needed in the future -->
-        </header>
-
-        <!-- Main Centered Content -->
-        <main class="flex-grow flex flex-col items-center justify-center text-center">
-            <div class="w-full max-w-4xl mx-auto">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider mb-4 text-shadow-lg">
-                    Տեխնիկական Սպասարկում
-                </h1>
-                <p class="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-300">
-                    Մեր կայքը ներկայումս ենթարկվում է տեխնիկական սպասարկման։ Մենք աշխատում ենք մեր ծառայությունները բարելավելու ուղղությամբ և շուտով կլինենք հասանելի:
-                </p>
-
-                <!-- Countdown Timer -->
-                <div id="countdown" class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 max-w-2xl mx-auto">
-                    <!-- Days -->
-                    <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
-                        <div id="days" class="text-4xl sm:text-5xl md:text-6xl font-bold">00</div>
-                        <div class="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Days</div>
-                    </div>
-                    <!-- Hours -->
-                    <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
-                        <div id="hours" class="text-4xl sm:text-5xl md:text-6xl font-bold">00</div>
-                        <div class="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Hours</div>
-                    </div>
-                    <!-- Minutes -->
-                    <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
-                        <div id="minutes" class="text-4xl sm:text-5xl md:text-6xl font-bold">00</div>
-                        <div class="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Minutes</div>
-                    </div>
-                    <!-- Seconds -->
-                    <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
-                        <div id="seconds" class="text-4xl sm:text-5xl md:text-6xl font-bold">00</div>
-                        <div class="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Seconds</div>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="text-center w-full max-w-5xl mx-auto pb-5">
-            <p class="text-xs sm:text-sm text-gray-400">Copyright © | AI QEZ BAN | All rights reserved by law.</p>
-        </footer>
-
-    </div>
     <div id="root"></div>
 
     <!-- React and ReactDOM UMD builds -->
@@ -137,607 +65,754 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
-        // --- From constants.ts ---
-        const ADMIN_PASSWORD_HASH = '6a7ce07bd84f40d3b805ead75a4e3bea70e181986b06b8a3d0a87d98ceaf8f37163b077bcec992db79a1dc10b84a81480878e360b21e11b6341666bbd1d5476f';
-        const DELETE_PASSWORD_HASH = '32e70810d01d36fcbdebf79b1b112a4477deac4b8c52b6e73aa0b3b176c7a21564c1875af1d4bf9aa9a86e005a68ce2bfa4da9f821f99a0220bd2e97cc7c4679';
-        const TOTAL_STORAGE_BYTES = 16 * 1024 * 1024 * 1024 * 1024; // 16 TB
-        const ITEMS_PER_PAGE = 10;
-        const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 minutes
-        const SUPPORTED_FILE_FORMATS = [
-'.txt', '.json', '.xml', '.csv', '.vbk', '.vib', '.bff', '.zip', '.tar', '.gz', '.gzip', '.sql', '.dump', '.bkp', '.backup', '.daf', '.7z', '.rar', '.bak', '.docx', '.xlsx', '.pptx', '.svg', '.mp3', '.html', '.php', '.css','.js', '.py', '.pgsql', '.png', '.jpg', '.mp4', '.jpeg', '.mpeg', '.wav', '.pdf', '.db',
+        // ===================================================================================
+        // MAINTENANCE MODE CONFIGURATION
+        // ===================================================================================
+        // Այս ֆունկցիան ապահովում է, որ 15 րոպեանոց հետհաշվարկը պահպանվի էջը վերաբեռնելիս։
+        const getPersistentMaintenanceSchedule = () => {
+            const END_TIME_KEY = 'maintenanceEndTime';
+            const DURATION_MINUTES = 15;
+
+            let endTimeStr = localStorage.getItem(END_TIME_KEY);
+            let endTime = endTimeStr ? new Date(endTimeStr) : null;
+
+            // Եթե պահպանված ժամանակ չկա, կամ այն անցել է, ստեղծում ենք նորը։
+            if (!endTime || endTime < new Date()) {
+                endTime = new Date(new Date().getTime() + DURATION_MINUTES * 60 * 1000);
+                localStorage.setItem(END_TIME_KEY, endTime.toISOString());
+            }
+
+            const startTime = new Date(endTime.getTime() - DURATION_MINUTES * 60 * 1000);
+
+            return {
+                start: startTime.toISOString(),
+                end: endTime.toISOString(),
+            };
+        };
+        
+        // Օգտագործում ենք միայն պահպանվող դինամիկ ժամանակացույցը։
+        const maintenanceSchedules = [
+            getPersistentMaintenanceSchedule()
         ];
 
-        // --- From services/cryptoService.ts ---
-        async function hashString(input) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(input);
-            const hashBuffer = await crypto.subtle.digest('SHA-512', data);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            return hashHex;
-        }
-        
-        // --- From hooks/useLocalStorage.ts ---
-        function useLocalStorage(key, initialValue) {
-            const [storedValue, setStoredValue] = useState(() => {
-                try {
-                    const item = window.localStorage.getItem(key);
-                    return item ? JSON.parse(item) : initialValue;
-                } catch (error) {
-                    console.error(error);
-                    return initialValue;
+        // ===================================================================================
+        // MAINTENANCE PAGE COMPONENT (Countdown Timer)
+        // ===================================================================================
+        const MaintenancePage = ({ schedule }) => {
+            const calculateTimeLeft = () => {
+                const difference = +new Date(schedule.end) - +new Date();
+                let timeLeft = {};
+
+                if (difference > 0) {
+                    timeLeft = {
+                        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                        minutes: Math.floor((difference / 1000 / 60) % 60),
+                        seconds: Math.floor((difference / 1000) % 60)
+                    };
                 }
-            });
+                return timeLeft;
+            };
+
+            const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
             useEffect(() => {
-                try {
-                    const valueToStore = JSON.stringify(storedValue);
-                    window.localStorage.setItem(key, valueToStore);
-                } catch (error) {
-                    console.error(error);
-                }
-            }, [key, storedValue]);
+                const timer = setTimeout(() => {
+                    setTimeLeft(calculateTimeLeft());
+                }, 1000);
 
-            return [storedValue, setStoredValue];
-        }
+                return () => clearTimeout(timer);
+            });
 
-        // --- From components/icons.tsx ---
-        const DeleteIcon = () => (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clipRule="evenodd" />
-          </svg>
-        );
-        const EditIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
-            </svg>
-        );
-        const DownloadIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 9.293a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-        );
-        const PlusIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
-            </svg>
-        );
-        const MoveIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L9 5.414V17a1 1 0 102 0V5.414l5.293 5.293a1 1 0 001.414-1.414l-7-7z" />
-            </svg>
-        );
-        const FolderIcon = () => (
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-          </svg>
-        );
-         const BackIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-            </svg>
-        );
-        const CopyIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
-              <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h6a2 2 0 00-2-2H5z" />
-            </svg>
-        );
+            const formatNumber = (num) => num.toString().padStart(2, '0');
 
+            const startDate = new Date(schedule.start);
+            const endDate = new Date(schedule.end);
 
-        // --- From components/Notification.tsx ---
-        const Notification = ({ message, type = 'success', show }) => {
-          const bgColor = type === 'success' ? 'bg-green-600' : 'bg-red-600';
-          return (
-            <div 
-              className={`fixed bottom-5 right-5 p-4 rounded-lg shadow-lg text-white ${bgColor} transition-transform duration-500 ease-in-out z-50 ${show ? 'translate-x-0' : 'translate-x-[calc(100%+20px)]'}`}
-            >
-              {message}
-            </div>
-          );
+            return (
+                <div className="maintenance-body bg-gray-900 text-white">
+                    <div className="background-container">
+                        <div className="overlay"></div>
+                    </div>
+                    <div className="flex flex-col min-h-screen justify-between p-4 sm:p-6 md:p-8">
+                        <header className="text-center w-full max-w-5xl mx-auto pt-10"></header>
+                        <main className="flex-grow flex flex-col items-center justify-center text-center">
+                            <div className="w-full max-w-4xl mx-auto">
+                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider mb-4 text-shadow-lg">
+                                    Տեխնիկական Սպասարկում
+                                </h1>
+                                <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-300">
+                                    Մեր կայքը ներկայումս ենթարկվում է տեխնիկական սպասարկման։ Մենք աշխատում ենք մեր ծառայությունները բարելավելու ուղղությամբ և շուտով կլինենք հասանելի:
+                                </p>
+                                {Object.keys(timeLeft).length > 0 ? (
+                                    <>
+                                        <h2 className="text-xl md:text-2xl text-gray-300 mb-6">Կայքը հասանելի կլինի՝</h2>
+                                        <div id="countdown" className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 max-w-2xl mx-auto">
+                                            <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
+                                                <div id="days" className="text-4xl sm:text-5xl md:text-6xl font-bold">{formatNumber(timeLeft.days)}</div>
+                                                <div className="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Օր</div>
+                                            </div>
+                                            <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
+                                                <div id="hours" className="text-4xl sm:text-5xl md:text-6xl font-bold">{formatNumber(timeLeft.hours)}</div>
+                                                <div className="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Ժամ</div>
+                                            </div>
+                                            <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
+                                                <div id="minutes" className="text-4xl sm:text-5xl md:text-6xl font-bold">{formatNumber(timeLeft.minutes)}</div>
+                                                <div className="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Րոպե</div>
+                                            </div>
+                                            <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg">
+                                                <div id="seconds" className="text-4xl sm:text-5xl md:text-6xl font-bold">{formatNumber(timeLeft.seconds)}</div>
+                                                <div className="text-xs sm:text-sm uppercase tracking-widest mt-1 text-gray-400">Վայրկյան</div>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="col-span-2 sm:col-span-4 text-2xl md:text-3xl font-bold p-6 bg-green-500/20 rounded-lg">
+                                        Կայքը շուտով հասանելի կլինի:
+                                    </div>
+                                )}
+                            </div>
+                        </main>
+                        <footer className="text-center w-full max-w-5xl mx-auto pb-5">
+                            <p className="text-xs sm:text-sm text-gray-400">Copyright © | AI QEZ BAN | All rights reserved by law.</p>
+                        </footer>
+                    </div>
+                </div>
+            );
         };
-        
-        // --- From components/PasswordPromptModal.tsx ---
-        const PasswordPromptModal = ({ action, onClose, onSubmit, error }) => {
-          const [password, setPassword] = useState('');
-          const titles = { login: 'Ադմինիստրատորի մուտք', delete: 'Ջնջման հաստատում' };
-          const descriptions = { login: 'Մուտքագրել ադմինիստրատորի գաղտնաբառը։', delete: 'Մուտքագրել ջնջման գաղտնաբառը։' };
-          const handleSubmit = (e) => { e.preventDefault(); onSubmit(password); };
-          useEffect(() => {
-            const handleEsc = (event) => { if (event.key === 'Escape') onClose(); };
-            window.addEventListener('keydown', handleEsc);
-            return () => window.removeEventListener('keydown', handleEsc);
-          }, [onClose]);
 
-          return (
-            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
-              <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
-                <h2 className="text-2xl font-bold text-white mb-2">{titles[action]}</h2>
-                <p className="text-gray-400 mb-6">{descriptions[action]}</p>
-                <form onSubmit={handleSubmit}>
-                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել գաղտնաբառը" autoFocus />
-                  {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-                  <div className="flex justify-end space-x-4">
-                    <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
-                    <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">Հաստատել</button>
+        // ===================================================================================
+        // MAIN APPLICATION (Existing code from your index.html)
+        // ===================================================================================
+        const MainApplication = () => {
+            // --- From constants.ts ---
+            const ADMIN_PASSWORD_HASH = '6a7ce07bd84f40d3b805ead75a4e3bea70e181986b06b8a3d0a87d98ceaf8f37163b077bcec992db79a1dc10b84a81480878e360b21e11b6341666bbd1d5476f';
+            const DELETE_PASSWORD_HASH = '32e70810d01d36fcbdebf79b1b112a4477deac4b8c52b6e73aa0b3b176c7a21564c1875af1d4bf9aa9a86e005a68ce2bfa4da9f821f99a0220bd2e97cc7c4679';
+            const TOTAL_STORAGE_BYTES = 16 * 1024 * 1024 * 1024 * 1024; // 16 TB
+            const ITEMS_PER_PAGE = 10;
+            const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 minutes
+            const SUPPORTED_FILE_FORMATS = [
+    '.txt', '.json', '.xml', '.csv', '.vbk', '.vib', '.bff', '.zip', '.tar', '.gz', '.gzip', '.sql', '.dump', '.bkp', '.backup', '.daf', '.7z', '.rar', '.bak', '.docx', '.xlsx', '.pptx', '.svg', '.mp3', '.html', '.php', '.css','.js', '.py', '.pgsql', '.png', '.jpg', '.mp4', '.jpeg', '.mpeg', '.wav', '.pdf', '.db',
+            ];
+
+            // --- From services/cryptoService.ts ---
+            async function hashString(input) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(input);
+                const hashBuffer = await crypto.subtle.digest('SHA-512', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                return hashHex;
+            }
+            
+            // --- From hooks/useLocalStorage.ts ---
+            function useLocalStorage(key, initialValue) {
+                const [storedValue, setStoredValue] = useState(() => {
+                    try {
+                        const item = window.localStorage.getItem(key);
+                        return item ? JSON.parse(item) : initialValue;
+                    } catch (error) {
+                        console.error(error);
+                        return initialValue;
+                    }
+                });
+
+                useEffect(() => {
+                    try {
+                        const valueToStore = JSON.stringify(storedValue);
+                        window.localStorage.setItem(key, valueToStore);
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }, [key, storedValue]);
+
+                return [storedValue, setStoredValue];
+            }
+
+            // --- From components/icons.tsx ---
+            const DeleteIcon = () => (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clipRule="evenodd" />
+              </svg>
+            );
+            const EditIcon = () => (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                    <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
+                </svg>
+            );
+            const DownloadIcon = () => (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 9.293a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+            );
+            const PlusIcon = () => (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                </svg>
+            );
+            const MoveIcon = () => (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L9 5.414V17a1 1 0 102 0V5.414l5.293 5.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+            );
+            const FolderIcon = () => (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+              </svg>
+            );
+             const BackIcon = () => (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                </svg>
+            );
+            const CopyIcon = () => (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
+                  <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h6a2 2 0 00-2-2H5z" />
+                </svg>
+            );
+
+
+            // --- From components/Notification.tsx ---
+            const Notification = ({ message, type = 'success', show }) => {
+              const bgColor = type === 'success' ? 'bg-green-600' : 'bg-red-600';
+              return (
+                <div 
+                  className={`fixed bottom-5 right-5 p-4 rounded-lg shadow-lg text-white ${bgColor} transition-transform duration-500 ease-in-out z-50 ${show ? 'translate-x-0' : 'translate-x-[calc(100%+20px)]'}`}
+                >
+                  {message}
+                </div>
+              );
+            };
+            
+            // --- From components/PasswordPromptModal.tsx ---
+            const PasswordPromptModal = ({ action, onClose, onSubmit, error }) => {
+              const [password, setPassword] = useState('');
+              const titles = { login: 'Ադմինիստրատորի մուտք', delete: 'Ջնջման հաստատում' };
+              const descriptions = { login: 'Մուտքագրել ադմինիստրատորի գաղտնաբառը։', delete: 'Մուտքագրել ջնջման գաղտնաբառը։' };
+              const handleSubmit = (e) => { e.preventDefault(); onSubmit(password); };
+              useEffect(() => {
+                const handleEsc = (event) => { if (event.key === 'Escape') onClose(); };
+                window.addEventListener('keydown', handleEsc);
+                return () => window.removeEventListener('keydown', handleEsc);
+              }, [onClose]);
+
+              return (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
+                  <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
+                    <h2 className="text-2xl font-bold text-white mb-2">{titles[action]}</h2>
+                    <p className="text-gray-400 mb-6">{descriptions[action]}</p>
+                    <form onSubmit={handleSubmit}>
+                      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել գաղտնաբառը" autoFocus />
+                      {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                      <div className="flex justify-end space-x-4">
+                        <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
+                        <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">Հաստատել</button>
+                      </div>
+                    </form>
                   </div>
-                </form>
-              </div>
-            </div>
-          );
-        };
-        
-        // --- From components/EditModal.tsx ---
-        const EditModal = ({ backup, onClose, onSave }) => {
-            const [name, setName] = useState(backup ? backup.name : '');
-            const [error, setError] = useState('');
-            useEffect(() => { if (backup) setName(backup.name); }, [backup]);
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                if (!name.trim()) { setError('Անունը չի կարող դատարկ լինել։'); return; }
-                onSave(backup.id, name.trim());
-            };
-            if (!backup) return null;
-
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
-                        <h2 className="text-2xl font-bold text-white mb-2">Խմբագրել Backup-ը</h2>
-                        <p className="text-gray-400 mb-6">Փոխել backup-ի անունը։</p>
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել նոր անվանում" autoFocus />
-                            {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-                            <div className="flex justify-end space-x-4">
-                                <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">Պահպանել</button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
-            );
-        };
-        
-        // --- From components/MoveModal.tsx ---
-        const MoveModal = ({ backup, folders, onClose, onMove }) => {
-            const [targetFolderId, setTargetFolderId] = useState('');
-            useEffect(() => { if (folders.length > 0) setTargetFolderId(folders[0].id) }, [folders]);
-            if (!backup) return null;
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                if (targetFolderId) onMove(backup.id, targetFolderId);
+              );
             };
+            
+            // --- From components/EditModal.tsx ---
+            const EditModal = ({ backup, onClose, onSave }) => {
+                const [name, setName] = useState(backup ? backup.name : '');
+                const [error, setError] = useState('');
+                useEffect(() => { if (backup) setName(backup.name); }, [backup]);
+                const handleSubmit = (e) => {
+                    e.preventDefault();
+                    if (!name.trim()) { setError('Անունը չի կարող դատարկ լինել։'); return; }
+                    onSave(backup.id, name.trim());
+                };
+                if (!backup) return null;
 
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
-                        <h2 className="text-2xl font-bold text-white mb-2">Տեղափոխել ֆայլը</h2>
-                        <p className="text-gray-400 mb-6">Ընտրել թղթապանակ '{backup.name}' ֆայլը տեղափոխելու համար։</p>
-                        <form onSubmit={handleSubmit}>
-                            <select value={targetFolderId} onChange={(e) => setTargetFolderId(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                                {folders.length > 0 ? folders.map(folder => (
-                                    <option key={folder.id} value={folder.id}>{folder.name}</option>
-                                )) : <option disabled>Թղթապանակներ չկան</option>}
-                            </select>
-                            <div className="flex justify-end space-x-4">
-                                <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
-                                <button type="submit" disabled={!targetFolderId} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition disabled:bg-gray-500 disabled:cursor-not-allowed">Տեղափոխել</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            );
-        };
-        
-        // --- NEW COMPONENT: EditFolderModal.tsx ---
-        const EditFolderModal = ({ folder, onClose, onSave }) => {
-            const [name, setName] = useState(folder ? folder.name : '');
-            const [error, setError] = useState('');
-            useEffect(() => { if (folder) setName(folder.name); }, [folder]);
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                if (!name.trim()) { setError('Անունը չի կարող դատարկ լինել։'); return; }
-                onSave(folder.id, name.trim());
-            };
-            if (!folder) return null;
-
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
-                        <h2 className="text-2xl font-bold text-white mb-2">Խմբագրել թղթապանակը</h2>
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել նոր անվանում" autoFocus />
-                            {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-                            <div className="flex justify-end space-x-4">
-                                <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">Պահպանել</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            );
-        };
-
-        // --- NEW COMPONENT: ConfirmDeleteModal.tsx ---
-        const ConfirmDeleteModal = ({ itemType, itemName, onClose, onConfirm }) => {
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
-                        <h2 className="text-2xl font-bold text-white mb-2">Հաստատել ջնջումը</h2>
-                        <p className="text-gray-400 mb-6">
-                            {`Վստա՞հ եք, որ ցանկանում եք ջնջել '${itemName}' ${itemType}-ը։`}
-                            {itemType === 'թղթապանակը' && ' Այս գործողությունը կջնջի նաև դրա ամբողջ պարունակությունը և չի կարող չեղարկվել։'}
-                        </p>
-                        <div className="flex justify-end space-x-4">
-                            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
-                            <button type="button" onClick={onConfirm} className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition">Ջնջել</button>
+                return (
+                    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
+                        <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
+                            <h2 className="text-2xl font-bold text-white mb-2">Խմբագրել Backup-ը</h2>
+                            <p className="text-gray-400 mb-6">Փոխել backup-ի անունը։</p>
+                            <form onSubmit={handleSubmit}>
+                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել նոր անվանում" autoFocus />
+                                {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                                <div className="flex justify-end space-x-4">
+                                    <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
+                                    <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">Պահպանել</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                );
+            };
+            
+            // --- From components/MoveModal.tsx ---
+            const MoveModal = ({ backup, folders, onClose, onMove }) => {
+                const [targetFolderId, setTargetFolderId] = useState('');
+                useEffect(() => { if (folders.length > 0) setTargetFolderId(folders[0].id) }, [folders]);
+                if (!backup) return null;
+                const handleSubmit = (e) => {
+                    e.preventDefault();
+                    if (targetFolderId) onMove(backup.id, targetFolderId);
+                };
+
+                return (
+                    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
+                        <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
+                            <h2 className="text-2xl font-bold text-white mb-2">Տեղափոխել ֆայլը</h2>
+                            <p className="text-gray-400 mb-6">Ընտրել թղթապանակ '{backup.name}' ֆայլը տեղափոխելու համար։</p>
+                            <form onSubmit={handleSubmit}>
+                                <select value={targetFolderId} onChange={(e) => setTargetFolderId(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                    {folders.length > 0 ? folders.map(folder => (
+                                        <option key={folder.id} value={folder.id}>{folder.name}</option>
+                                    )) : <option disabled>Թղթապանակներ չկան</option>}
+                                </select>
+                                <div className="flex justify-end space-x-4">
+                                    <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
+                                    <button type="submit" disabled={!targetFolderId} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition disabled:bg-gray-500 disabled:cursor-not-allowed">Տեղափոխել</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                );
+            };
+            
+            // --- NEW COMPONENT: EditFolderModal.tsx ---
+            const EditFolderModal = ({ folder, onClose, onSave }) => {
+                const [name, setName] = useState(folder ? folder.name : '');
+                const [error, setError] = useState('');
+                useEffect(() => { if (folder) setName(folder.name); }, [folder]);
+                const handleSubmit = (e) => {
+                    e.preventDefault();
+                    if (!name.trim()) { setError('Անունը չի կարող դատարկ լինել։'); return; }
+                    onSave(folder.id, name.trim());
+                };
+                if (!folder) return null;
+
+                return (
+                    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
+                        <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
+                            <h2 className="text-2xl font-bold text-white mb-2">Խմբագրել թղթապանակը</h2>
+                            <form onSubmit={handleSubmit}>
+                                <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել նոր անվանում" autoFocus />
+                                {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                                <div className="flex justify-end space-x-4">
+                                    <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
+                                    <button type="submit" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">Պահպանել</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                );
+            };
+
+            // --- NEW COMPONENT: ConfirmDeleteModal.tsx ---
+            const ConfirmDeleteModal = ({ itemType, itemName, onClose, onConfirm }) => {
+                return (
+                    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
+                        <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
+                            <h2 className="text-2xl font-bold text-white mb-2">Հաստատել ջնջումը</h2>
+                            <p className="text-gray-400 mb-6">
+                                {`Վստա՞հ եք, որ ցանկանում եք ջնջել '${itemName}' ${itemType}-ը։`}
+                                {itemType === 'թղթապանակը' && ' Այս գործողությունը կջնջի նաև դրա ամբողջ պարունակությունը և չի կարող չեղարկվել։'}
+                            </p>
+                            <div className="flex justify-end space-x-4">
+                                <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
+                                <button type="button" onClick={onConfirm} className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition">Ջնջել</button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            // --- From components/StorageInfo.tsx ---
+            const StorageInfo = ({ used, total }) => {
+              const formatBytes = (bytes, decimals = 2) => {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const dm = decimals < 0 ? 0 : decimals;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+              };
+              const usedPercent = total > 0 ? (used / total) * 100 : 0;
+              return (
+                <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
+                  <div className="flex justify-between items-center mb-2 text-sm text-gray-400">
+                    <span>Օգտագործված: {formatBytes(used)}</span>
+                    <span>Ընդհանուր: {formatBytes(total)}</span>
+                  </div>
+                  <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
+                    <div className="bg-blue-600 h-4 rounded-full transition-all duration-500 ease-out" style={{ width: `${usedPercent}%` }}></div>
+                  </div>
                 </div>
-            );
-        };
+              );
+            };
+            
+            // --- From components/BackupTable.tsx ---
+            const BackupTable = ({ backups, onExportClick, onEditClick, onDeleteClick, onMoveClick, currentPage, itemsPerPage }) => {
+              const formatBytes = (bytes, decimals = 2) => {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return `${parseFloat((bytes / Math.pow(k, i)).toFixed(decimals < 0 ? 0 : decimals))} ${sizes[i]}`;
+              };
 
-        // --- From components/StorageInfo.tsx ---
-        const StorageInfo = ({ used, total }) => {
-          const formatBytes = (bytes, decimals = 2) => {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-          };
-          const usedPercent = total > 0 ? (used / total) * 100 : 0;
-          return (
-            <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
-              <div className="flex justify-between items-center mb-2 text-sm text-gray-400">
-                <span>Օգտագործված: {formatBytes(used)}</span>
-                <span>Ընդհանուր: {formatBytes(total)}</span>
-              </div>
-              <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
-                <div className="bg-blue-600 h-4 rounded-full transition-all duration-500 ease-out" style={{ width: `${usedPercent}%` }}></div>
-              </div>
-            </div>
-          );
-        };
-        
-        // --- From components/BackupTable.tsx ---
-        const BackupTable = ({ backups, onExportClick, onEditClick, onDeleteClick, onMoveClick, currentPage, itemsPerPage }) => {
-          const formatBytes = (bytes, decimals = 2) => {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(decimals < 0 ? 0 : decimals))} ${sizes[i]}`;
-          };
-
-          return (
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-gray-800 text-sm text-left text-gray-300">
-                <thead className="bg-gray-700 text-xs">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 capitalize w-12">#</th>
-                    <th scope="col" className="px-6 py-3 capitalize">Անվանում</th>
-                    <th scope="col" className="px-6 py-3 hidden md:table-cell capitalize">Ամսաթիվ</th>
-                    <th scope="col" className="px-6 py-3 hidden lg:table-cell capitalize">Ժամ</th>
-                    <th scope="col" className="px-6 py-3 hidden md:table-cell capitalize">Չափս</th>
-                    <th scope="col" className="px-6 py-3 text-center capitalize">Գործողություններ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {backups.length > 0 ? (
-                    backups.map((backup, index) => (
-                      <tr key={backup.id} className="border-b border-gray-700 hover:bg-gray-700/50">
-                        <td className="px-6 py-4 font-medium text-gray-400">{(currentPage - 1) * itemsPerPage + index + 1}</td>
-                        <td className="px-6 py-4 font-medium text-white whitespace-nowrap">{backup.name}</td>
-                        <td className="px-6 py-4 hidden md:table-cell">{backup.date}</td>
-                        <td className="px-6 py-4 hidden lg:table-cell">{backup.time}</td>
-                        <td className="px-6 py-4 hidden md:table-cell">{formatBytes(backup.size)}</td>
-                        <td className="px-6 py-4">
-                          <div className="flex items-center justify-center space-x-2">
-                            <button onClick={() => onExportClick(backup)} title="Export" className="text-blue-400 hover:text-blue-300"><DownloadIcon /></button>
-                            <button onClick={() => onEditClick(backup)} title="Edit" className="text-yellow-400 hover:text-yellow-300"><EditIcon /></button>
-                            <button onClick={() => onMoveClick(backup)} title="Move" className="text-green-400 hover:text-green-300"><MoveIcon /></button>
-                            <button onClick={() => onDeleteClick(backup)} title="Delete" className="text-red-500 hover:text-red-400"><DeleteIcon /></button>
-                          </div>
-                        </td>
+              return (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full bg-gray-800 text-sm text-left text-gray-300">
+                    <thead className="bg-gray-700 text-xs">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 capitalize w-12">#</th>
+                        <th scope="col" className="px-6 py-3 capitalize">Անվանում</th>
+                        <th scope="col" className="px-6 py-3 hidden md:table-cell capitalize">Ամսաթիվ</th>
+                        <th scope="col" className="px-6 py-3 hidden lg:table-cell capitalize">Ժամ</th>
+                        <th scope="col" className="px-6 py-3 hidden md:table-cell capitalize">Չափս</th>
+                        <th scope="col" className="px-6 py-3 text-center capitalize">Գործողություններ</th>
                       </tr>
-                    ))
-                  ) : (
-                    <tr><td colSpan={6} className="text-center py-8 text-gray-500">Ֆայլեր չեն գտնվել։</td></tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          );
-        };
-        
-        // --- From components/Header.tsx ---
-        const Header = ({ isLoggedIn, onLoginClick, onLogoutClick }) => {
-          return (
-            <header className="bg-gray-800 shadow-md">
-              <div className="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
-                <h1 className="text-xl md:text-3xl font-bold text-white tracking-wider">AI QEZ BACKUP</h1>
-                {isLoggedIn ? (
-                  <button onClick={onLogoutClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Ելք</button>
-                ) : (
-                  <button onClick={onLoginClick} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Մուտք</button>
-                )}
-              </div>
-            </header>
-          );
-        };
-        
-        // --- From components/Pagination.tsx ---
-        const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-            if (totalPages <= 1) return null;
-            return (
-                <div className="flex justify-center items-center mt-6 space-x-4">
-                    <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Նախորդ</button>
-                    <span className="text-gray-400">Էջ {currentPage} / {totalPages}</span>
-                    <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Հաջորդ</button>
+                    </thead>
+                    <tbody>
+                      {backups.length > 0 ? (
+                        backups.map((backup, index) => (
+                          <tr key={backup.id} className="border-b border-gray-700 hover:bg-gray-700/50">
+                            <td className="px-6 py-4 font-medium text-gray-400">{(currentPage - 1) * itemsPerPage + index + 1}</td>
+                            <td className="px-6 py-4 font-medium text-white whitespace-nowrap">{backup.name}</td>
+                            <td className="px-6 py-4 hidden md:table-cell">{backup.date}</td>
+                            <td className="px-6 py-4 hidden lg:table-cell">{backup.time}</td>
+                            <td className="px-6 py-4 hidden md:table-cell">{formatBytes(backup.size)}</td>
+                            <td className="px-6 py-4">
+                              <div className="flex items-center justify-center space-x-2">
+                                <button onClick={() => onExportClick(backup)} title="Export" className="text-blue-400 hover:text-blue-300"><DownloadIcon /></button>
+                                <button onClick={() => onEditClick(backup)} title="Edit" className="text-yellow-400 hover:text-yellow-300"><EditIcon /></button>
+                                <button onClick={() => onMoveClick(backup)} title="Move" className="text-green-400 hover:text-green-300"><MoveIcon /></button>
+                                <button onClick={() => onDeleteClick(backup)} title="Delete" className="text-red-500 hover:text-red-400"><DeleteIcon /></button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr><td colSpan={6} className="text-center py-8 text-gray-500">Ֆայլեր չեն գտնվել։</td></tr>
+                      )}
+                    </tbody>
+                  </table>
                 </div>
-            );
-        };
-        
-        // --- UPDATED COMPONENT: FolderView.tsx ---
-        const FolderView = ({ folders, onFolderCreate, onFolderSelect, onShowRoot, onFolderEdit, onFolderCopy, onFolderDelete }) => {
-            const [newFolderName, setNewFolderName] = useState('');
-            const handleCreate = () => {
-                if (newFolderName.trim()) {
-                    onFolderCreate(newFolderName.trim());
-                    setNewFolderName('');
+              );
+            };
+            
+            // --- From components/Header.tsx ---
+            const Header = ({ isLoggedIn, onLoginClick, onLogoutClick }) => {
+              return (
+                <header className="bg-gray-800 shadow-md">
+                  <div className="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+                    <h1 className="text-xl md:text-3xl font-bold text-white tracking-wider">AI QEZ BACKUP</h1>
+                    {isLoggedIn ? (
+                      <button onClick={onLogoutClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Ելք</button>
+                    ) : (
+                      <button onClick={onLoginClick} className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Մուտք</button>
+                    )}
+                  </div>
+                </header>
+              );
+            };
+            
+            // --- From components/Pagination.tsx ---
+            const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+                if (totalPages <= 1) return null;
+                return (
+                    <div className="flex justify-center items-center mt-6 space-x-4">
+                        <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Նախորդ</button>
+                        <span className="text-gray-400">Էջ {currentPage} / {totalPages}</span>
+                        <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Հաջորդ</button>
+                    </div>
+                );
+            };
+            
+            // --- UPDATED COMPONENT: FolderView.tsx ---
+            const FolderView = ({ folders, onFolderCreate, onFolderSelect, onShowRoot, onFolderEdit, onFolderCopy, onFolderDelete }) => {
+                const [newFolderName, setNewFolderName] = useState('');
+                const handleCreate = () => {
+                    if (newFolderName.trim()) {
+                        onFolderCreate(newFolderName.trim());
+                        setNewFolderName('');
+                    }
+                };
+                return (
+                    <div className="mt-8 bg-gray-800 shadow-lg rounded-lg p-4 md:p-6">
+                        <h2 className="text-xl font-bold text-white mb-4">Թղթապանակներ</h2>
+                        <div className="flex flex-col sm:flex-row gap-2 mb-4">
+                            <input type="text" value={newFolderName} onChange={(e) => setNewFolderName(e.target.value)} placeholder="Նոր թղթապանակի անուն" className="flex-grow bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                            <button onClick={handleCreate} className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition"><PlusIcon /> Ստեղծել</button>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                            <button onClick={onShowRoot} className="flex flex-col items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition text-center group">
+                                <BackIcon /> <span className="mt-1 text-sm">Հիմնական</span>
+                            </button>
+                            {folders.map(folder => (
+                                <div key={folder.id} className="relative bg-gray-700 rounded-lg group">
+                                   <button onClick={() => onFolderSelect(folder.id, folder.name)} className="w-full h-full flex flex-col items-center justify-center p-4 hover:bg-gray-600 rounded-lg transition text-center">
+                                       <FolderIcon /> <span className="mt-1 text-sm break-all">{folder.name}</span>
+                                   </button>
+                                   <div className="absolute top-1 right-1 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
+                                       <button onClick={() => onFolderEdit(folder)} title="Խմբագրել" className="p-1 rounded-full bg-gray-800/50 hover:bg-yellow-500 text-yellow-400 hover:text-white"><EditIcon/></button>
+                                       <button onClick={() => onFolderCopy(folder)} title="Պատճենել" className="p-1 rounded-full bg-gray-800/50 hover:bg-blue-500 text-blue-400 hover:text-white"><CopyIcon/></button>
+                                       <button onClick={() => onFolderDelete(folder)} title="Ջնջել" className="p-1 rounded-full bg-gray-800/50 hover:bg-red-500 text-red-500 hover:text-white"><DeleteIcon/></button>
+                                   </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            };
+
+            const [backups, setBackups] = useLocalStorage('backups', []);
+            const [folders, setFolders] = useLocalStorage('folders', []);
+            const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
+            
+            const [searchTerm, setSearchTerm] = useState('');
+            const [modalState, setModalState] = useState({ isOpen: false, action: null, data: null, error: undefined });
+            const [notification, setNotification] = useState({ show: false, message: '', type: 'success' });
+            const [currentPage, setCurrentPage] = useState(1);
+            const [isImporting, setIsImporting] = useState(false);
+            const [selectedFolder, setSelectedFolder] = useState({ id: null, name: 'Հիմնական' });
+
+            const fileInputRef = useRef(null);
+            const inactivityTimerRef = useRef(null);
+
+            const showNotification = useCallback((message, type = 'success') => {
+                setNotification({ show: true, message, type });
+                setTimeout(() => setNotification({ show: false, message: '', type: 'success' }), 4000);
+            }, []);
+
+            const handleLogout = useCallback(() => {
+                setIsLoggedIn(false);
+                if(isLoggedIn) showNotification('Դուք հաջողությամբ դուրս եք եկել համակարգից:', 'success');
+            }, [isLoggedIn, showNotification, setIsLoggedIn]);
+
+            const resetInactivityTimer = useCallback(() => {
+                clearTimeout(inactivityTimerRef.current);
+                if (isLoggedIn) {
+                  inactivityTimerRef.current = setTimeout(() => {
+                    if (!isImporting) handleLogout();
+                  }, INACTIVITY_TIMEOUT);
+                }
+            }, [isLoggedIn, isImporting, handleLogout]);
+
+            useEffect(() => {
+                const events = ['mousemove', 'keydown', 'click', 'scroll'];
+                events.forEach(event => window.addEventListener(event, resetInactivityTimer));
+                resetInactivityTimer();
+                return () => {
+                  events.forEach(event => window.removeEventListener(event, resetInactivityTimer));
+                  clearTimeout(inactivityTimerRef.current);
+                };
+            }, [resetInactivityTimer]);
+
+            const handleLogin = async (password) => {
+                const hash = await hashString(password);
+                if (hash === ADMIN_PASSWORD_HASH) {
+                  setIsLoggedIn(true);
+                  setModalState({ isOpen: false });
+                  showNotification('Հաջողված մուտք!', 'success');
+                } else {
+                  setModalState(prev => ({ ...prev, error: 'Անվավեր գաղտնաբառ!' }));
                 }
             };
+
+            const handleDelete = async (password) => {
+                if (modalState.action === 'delete' && modalState.data) {
+                  const hash = await hashString(password);
+                  if (hash === DELETE_PASSWORD_HASH) {
+                    setBackups(prev => prev.filter(b => b.id !== modalState.data.id));
+                    setModalState({ isOpen: false });
+                    showNotification('Backup-ը հաջողությամբ ջնջվեց։', 'success');
+                  } else {
+                    setModalState(prev => ({ ...prev, error: 'Անվավեր գաղտնաբառ!' }));
+                  }
+                }
+            };
+
+            const handleSaveBackupName = (backupId, newName) => {
+                  setBackups(prev => prev.map(b => b.id === backupId ? { ...b, name: newName } : b));
+                  setModalState({ isOpen: false });
+                  showNotification('Backup-ի անունը հաջողությամբ փոխվեց։', 'success');
+            };
+
+            const handleExport = (backup) => {
+                  try {
+                      const dataStr = JSON.stringify(backup, null, 2);
+                      const blob = new Blob([dataStr], { type: 'application/json' });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url; a.download = `${backup.name.split('.')[0]}_metadata.json`;
+                      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                      URL.revokeObjectURL(url);
+                      showNotification(`'${backup.name}' backup-ի տվյալներն արտահանվում են...`, 'success');
+                  } catch (error) {
+                      showNotification('Արտահանումը ձախողվեց։', 'error');
+                  }
+            };
+
+            const openModal = (action, data = null) => setModalState({ isOpen: true, action, data, error: undefined });
+            
+            const handleFileImport = (event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                setIsImporting(true);
+                const fileExtension = `.${file.name.split('.').pop()?.toLowerCase()}`;
+                if (!SUPPORTED_FILE_FORMATS.includes(fileExtension)) {
+                  showNotification(`Չաջակցվող ֆայլի ձևաչափ՝ ${fileExtension}`, 'error');
+                  setIsImporting(false); return;
+                }
+                const newBackup = { id: crypto.randomUUID(), name: file.name, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString(), size: file.size, folderId: selectedFolder.id };
+                setBackups(prev => [...prev, newBackup]);
+                showNotification(`'${file.name}' ֆայլը ներմուծվեց և դուք դուրս եք գալիս համակարգից։`, 'success');
+                if (fileInputRef.current) fileInputRef.current.value = '';
+                setIsImporting(false);
+                setTimeout(handleLogout, 1000);
+            };
+
+            const usedStorage = useMemo(() => backups.reduce((acc, file) => acc + file.size, 0), [backups]);
+            
+            const filteredBackups = useMemo(() => {
+                const newFiltered = backups
+                  .filter(backup => backup.folderId === selectedFolder.id)
+                  .filter(backup => backup.name.toLowerCase().includes(searchTerm.toLowerCase()));
+                
+                const newTotalPages = Math.ceil(newFiltered.length / ITEMS_PER_PAGE);
+                if (currentPage > newTotalPages && newTotalPages > 0) {
+                    setCurrentPage(1);
+                }
+                if (newFiltered.length === 0) {
+                    setCurrentPage(1);
+                }
+                
+                return newFiltered;
+            }, [backups, searchTerm, selectedFolder, currentPage]);
+
+            const paginatedBackups = useMemo(() => {
+                  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+                  return filteredBackups.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+            }, [filteredBackups, currentPage]);
+
+            const totalPages = Math.ceil(filteredBackups.length / ITEMS_PER_PAGE);
+            
+            const triggerFileImport = useCallback(() => fileInputRef.current?.click(), []);
+            
+            const handleCreateFolder = (name) => {
+                if (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
+                  showNotification('Այս անունով թղթապանակ արդեն գոյություն ունի։', 'error'); return;
+                }
+                const newFolder = { id: crypto.randomUUID(), name };
+                setFolders(prev => [...prev, newFolder]);
+                showNotification(`'${name}' թղթապանակը ստեղծված է։`, 'success');
+            };
+            
+            const handleEditFolder = (folderId, newName) => {
+                if (folders.some(f => f.name.toLowerCase() === newName.toLowerCase() && f.id !== folderId)) {
+                    showNotification('Այս անունով թղթապանակ արդեն գոյություն ունի։', 'error'); return;
+                }
+                setFolders(prev => prev.map(f => f.id === folderId ? { ...f, name: newName } : f));
+                setModalState({ isOpen: false });
+                showNotification('Թղթապանակի անունը հաջողությամբ փոխվեց։', 'success');
+            };
+
+            const handleCopyFolder = (folderToCopy) => {
+                let newName = `Copy of ${folderToCopy.name}`; let counter = 1;
+                while (folders.some(f => f.name.toLowerCase() === newName.toLowerCase())) {
+                    counter++; newName = `Copy (${counter}) of ${folderToCopy.name}`;
+                }
+                const newFolder = { id: crypto.randomUUID(), name: newName };
+                const filesToCopy = backups.filter(b => b.folderId === folderToCopy.id);
+                const newFiles = filesToCopy.map(file => ({ ...file, id: crypto.randomUUID(), folderId: newFolder.id }));
+                setFolders(prev => [...prev, newFolder]);
+                setBackups(prev => [...prev, ...newFiles]);
+                showNotification(`'${folderToCopy.name}' թղթապանակը և դրա պարունակությունը պատճենվեցին։`, 'success');
+            };
+
+            const confirmDeleteFolder = () => {
+                const folderToDelete = modalState.data; if (!folderToDelete) return;
+                setFolders(prev => prev.filter(f => f.id !== folderToDelete.id));
+                setBackups(prev => prev.filter(b => b.folderId !== folderToDelete.id));
+                if(selectedFolder.id === folderToDelete.id) {
+                    setSelectedFolder({ id: null, name: 'Հիմնական' });
+                }
+                setModalState({ isOpen: false });
+                showNotification(`'${folderToDelete.name}' թղթապանակը և դրա պարունակությունը ջնջվեցին։`, 'success');
+            };
+
+            const handleMoveFile = (backupId, targetFolderId) => {
+                  setBackups(prev => prev.map(b => b.id === backupId ? { ...b, name: newName } : b));
+                  setModalState({ isOpen: false });
+                  showNotification('Ֆայլը հաջողությամբ տեղափոխվեց։', 'success');
+            };
+
             return (
-                <div className="mt-8 bg-gray-800 shadow-lg rounded-lg p-4 md:p-6">
-                    <h2 className="text-xl font-bold text-white mb-4">Թղթապանակներ</h2>
-                    <div className="flex flex-col sm:flex-row gap-2 mb-4">
-                        <input type="text" value={newFolderName} onChange={(e) => setNewFolderName(e.target.value)} placeholder="Նոր թղթապանակի անուն" className="flex-grow bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
-                        <button onClick={handleCreate} className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition"><PlusIcon /> Ստեղծել</button>
-                    </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                        <button onClick={onShowRoot} className="flex flex-col items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition text-center group">
-                            <BackIcon /> <span className="mt-1 text-sm">Հիմնական</span>
-                        </button>
-                        {folders.map(folder => (
-                            <div key={folder.id} className="relative bg-gray-700 rounded-lg group">
-                               <button onClick={() => onFolderSelect(folder.id, folder.name)} className="w-full h-full flex flex-col items-center justify-center p-4 hover:bg-gray-600 rounded-lg transition text-center">
-                                   <FolderIcon /> <span className="mt-1 text-sm break-all">{folder.name}</span>
-                               </button>
-                               <div className="absolute top-1 right-1 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
-                                   <button onClick={() => onFolderEdit(folder)} title="Խմբագրել" className="p-1 rounded-full bg-gray-800/50 hover:bg-yellow-500 text-yellow-400 hover:text-white"><EditIcon/></button>
-                                   <button onClick={() => onFolderCopy(folder)} title="Պատճենել" className="p-1 rounded-full bg-gray-800/50 hover:bg-blue-500 text-blue-400 hover:text-white"><CopyIcon/></button>
-                                   <button onClick={() => onFolderDelete(folder)} title="Ջնջել" className="p-1 rounded-full bg-gray-800/50 hover:bg-red-500 text-red-500 hover:text-white"><DeleteIcon/></button>
-                               </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="min-h-screen bg-gray-900 text-gray-200 font-sans">
+                  <Header isLoggedIn={isLoggedIn} onLoginClick={() => openModal('login')} onLogoutClick={handleLogout} />
+                  <main className="container mx-auto p-4 md:p-8">
+                    {isLoggedIn ? (
+                      <>
+                        <StorageInfo used={usedStorage} total={TOTAL_STORAGE_BYTES} />
+                        <FolderView folders={folders} onFolderCreate={handleCreateFolder} onFolderSelect={(id, name) => setSelectedFolder({id, name})} onShowRoot={() => setSelectedFolder({id: null, name: 'Հիմնական'})} onFolderEdit={(folder) => openModal('editFolder', folder)} onFolderCopy={handleCopyFolder} onFolderDelete={(folder) => openModal('deleteFolder', folder)} />
+                        <div className="mt-8 bg-gray-800 shadow-lg rounded-lg p-4 md:p-6">
+                          <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
+                            <h2 className="text-xl font-bold text-white w-full md:w-auto text-center md:text-left">Ֆայլեր {selectedFolder.name}-ում</h2>
+                            <input type="text" placeholder="Որոնել..." className="w-full md:w-1/3 bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                            <button onClick={triggerFileImport} className="w-full md:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition"><PlusIcon /> Ներմուծել</button>
+                            <input type="file" ref={fileInputRef} onChange={handleFileImport} className="hidden" />
+                          </div>
+                          <BackupTable backups={paginatedBackups} onDeleteClick={(backup) => openModal('delete', backup)} onEditClick={(backup) => openModal('edit', backup)} onExportClick={handleExport} onMoveClick={(backup) => openModal('move', backup)} currentPage={currentPage} itemsPerPage={ITEMS_PER_PAGE} />
+                          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+                        </div>
+                      </>
+                    ) : (
+                        <div className="text-center py-20">
+                            <h2 className="text-3xl font-bold text-white mb-4">Բարի գալուստ AI QEZ BACKUP</h2>
+                            <p className="text-gray-400 text-lg">Խնդրում ենք մուտք գործել՝ ձեր ֆայլերը կառավարելու համար։</p>
+                        </div>
+                    )}
+                  </main>
+                  {modalState.isOpen && (modalState.action === 'login' || modalState.action === 'delete') && ( <PasswordPromptModal action={modalState.action} error={modalState.error} onClose={() => setModalState({ isOpen: false })} onSubmit={modalState.action === 'login' ? handleLogin : handleDelete} /> )}
+                  {modalState.isOpen && modalState.action === 'edit' && ( <EditModal backup={modalState.data} onClose={() => setModalState({ isOpen: false })} onSave={handleSaveBackupName} /> )}
+                  {modalState.isOpen && modalState.action === 'move' && ( <MoveModal backup={modalState.data} folders={folders} onClose={() => setModalState({ isOpen: false })} onMove={handleMoveFile} /> )}
+                  {modalState.isOpen && modalState.action === 'editFolder' && ( <EditFolderModal folder={modalState.data} onClose={() => setModalState({ isOpen: false })} onSave={handleEditFolder} /> )}
+                  {modalState.isOpen && modalState.action === 'deleteFolder' && ( <ConfirmDeleteModal itemType="թղթապանակը" itemName={modalState.data.name} onClose={() => setModalState({ isOpen: false })} onConfirm={confirmDeleteFolder} /> )}
+                  <Notification message={notification.message} type={notification.type} show={notification.show} />
                 </div>
             );
         };
 
-        
-        // --- From App.tsx ---
+        // --- From App.tsx (Root component with maintenance logic) ---
         const App = () => {
-          const [backups, setBackups] = useLocalStorage('backups', []);
-          const [folders, setFolders] = useLocalStorage('folders', []);
-          const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
-          
-          const [searchTerm, setSearchTerm] = useState('');
-          const [modalState, setModalState] = useState({ isOpen: false, action: null, data: null, error: undefined });
-          const [notification, setNotification] = useState({ show: false, message: '', type: 'success' });
-          const [currentPage, setCurrentPage] = useState(1);
-          const [isImporting, setIsImporting] = useState(false);
-          const [selectedFolder, setSelectedFolder] = useState({ id: null, name: 'Հիմնական' });
+            const [activeMaintenanceSchedule, setActiveMaintenanceSchedule] = useState(null);
 
-          const fileInputRef = useRef(null);
-          const inactivityTimerRef = useRef(null);
+            useEffect(() => {
+                const checkMaintenanceStatus = () => {
+                    const now = new Date();
+                    const currentActiveSchedule = maintenanceSchedules.find(schedule => {
+                        const start = new Date(schedule.start);
+                        const end = new Date(schedule.end);
+                        return now >= start && now <= end;
+                    });
+                    setActiveMaintenanceSchedule(currentActiveSchedule || null);
+                };
 
-          const showNotification = useCallback((message, type = 'success') => {
-            setNotification({ show: true, message, type });
-            setTimeout(() => setNotification({ show: false, message: '', type: 'success' }), 4000);
-          }, []);
+                // 1. Ստուգում էջի առաջին բեռնման ժամանակ
+                checkMaintenanceStatus();
 
-          const handleLogout = useCallback(() => {
-            setIsLoggedIn(false);
-            if(isLoggedIn) showNotification('Դուք հաջողությամբ դուրս եք եկել համակարգից:', 'success');
-          }, [isLoggedIn, showNotification, setIsLoggedIn]);
+                // 2. Ստուգում յուրաքանչյուր 10 վայրկյանը մեկ
+                const intervalId = setInterval(checkMaintenanceStatus, 10000);
 
-          const resetInactivityTimer = useCallback(() => {
-            clearTimeout(inactivityTimerRef.current);
-            if (isLoggedIn) {
-              inactivityTimerRef.current = setTimeout(() => {
-                if (!isImporting) handleLogout();
-              }, INACTIVITY_TIMEOUT);
-            }
-          }, [isLoggedIn, isImporting, handleLogout]);
+                // Մաքրում ենք interval-ը, երբ կոմպոնենտը հեռացվում է
+                return () => clearInterval(intervalId);
+            }, []);
 
-          useEffect(() => {
-            const events = ['mousemove', 'keydown', 'click', 'scroll'];
-            events.forEach(event => window.addEventListener(event, resetInactivityTimer));
-            resetInactivityTimer();
-            return () => {
-              events.forEach(event => window.removeEventListener(event, resetInactivityTimer));
-              clearTimeout(inactivityTimerRef.current);
-            };
-          }, [resetInactivityTimer]);
-
-          const handleLogin = async (password) => {
-            const hash = await hashString(password);
-            if (hash === ADMIN_PASSWORD_HASH) {
-              setIsLoggedIn(true);
-              setModalState({ isOpen: false });
-              showNotification('Հաջողված մուտք!', 'success');
-            } else {
-              setModalState(prev => ({ ...prev, error: 'Անվավեր գաղտնաբառ!' }));
-            }
-          };
-
-          const handleDelete = async (password) => {
-            if (modalState.action === 'delete' && modalState.data) {
-              const hash = await hashString(password);
-              if (hash === DELETE_PASSWORD_HASH) {
-                setBackups(prev => prev.filter(b => b.id !== modalState.data.id));
-                setModalState({ isOpen: false });
-                showNotification('Backup-ը հաջողությամբ ջնջվեց։', 'success');
-              } else {
-                setModalState(prev => ({ ...prev, error: 'Անվավեր գաղտնաբառ!' }));
-              }
-            }
-          };
-
-          const handleSaveBackupName = (backupId, newName) => {
-              setBackups(prev => prev.map(b => b.id === backupId ? { ...b, name: newName } : b));
-              setModalState({ isOpen: false });
-              showNotification('Backup-ի անունը հաջողությամբ փոխվեց։', 'success');
-          };
-
-          const handleExport = (backup) => {
-              try {
-                  const dataStr = JSON.stringify(backup, null, 2);
-                  const blob = new Blob([dataStr], { type: 'application/json' });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = url; a.download = `${backup.name.split('.')[0]}_metadata.json`;
-                  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-                  URL.revokeObjectURL(url);
-                  showNotification(`'${backup.name}' backup-ի տվյալներն արտահանվում են...`, 'success');
-              } catch (error) {
-                  showNotification('Արտահանումը ձախողվեց։', 'error');
-              }
-          };
-
-          const openModal = (action, data = null) => setModalState({ isOpen: true, action, data, error: undefined });
-          
-          const handleFileImport = (event) => {
-            const file = event.target.files?.[0];
-            if (!file) return;
-            setIsImporting(true);
-            const fileExtension = `.${file.name.split('.').pop()?.toLowerCase()}`;
-            if (!SUPPORTED_FILE_FORMATS.includes(fileExtension)) {
-              showNotification(`Չաջակցվող ֆայլի ձևաչափ՝ ${fileExtension}`, 'error');
-              setIsImporting(false); return;
-            }
-            const newBackup = { id: crypto.randomUUID(), name: file.name, date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString(), size: file.size, folderId: selectedFolder.id };
-            setBackups(prev => [...prev, newBackup]);
-            showNotification(`'${file.name}' ֆայլը ներմուծվեց և դուք դուրս եք գալիս համակարգից։`, 'success');
-            if (fileInputRef.current) fileInputRef.current.value = '';
-            setIsImporting(false);
-            setTimeout(handleLogout, 1000);
-          };
-
-          const usedStorage = useMemo(() => backups.reduce((acc, file) => acc + file.size, 0), [backups]);
-          
-          const filteredBackups = useMemo(() => {
-            const newFiltered = backups
-              .filter(backup => backup.folderId === selectedFolder.id)
-              .filter(backup => backup.name.toLowerCase().includes(searchTerm.toLowerCase()));
-            
-            // Reset to page 1 if current page becomes invalid
-            const newTotalPages = Math.ceil(newFiltered.length / ITEMS_PER_PAGE);
-            if (currentPage > newTotalPages && newTotalPages > 0) {
-                setCurrentPage(1);
-            }
-            if (newFiltered.length === 0) {
-                setCurrentPage(1);
+            if (activeMaintenanceSchedule) {
+                return <MaintenancePage schedule={activeMaintenanceSchedule} />;
             }
             
-            return newFiltered;
-          }, [backups, searchTerm, selectedFolder, currentPage]);
-
-          const paginatedBackups = useMemo(() => {
-              const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-              return filteredBackups.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-          }, [filteredBackups, currentPage]);
-
-          const totalPages = Math.ceil(filteredBackups.length / ITEMS_PER_PAGE);
-          
-          const triggerFileImport = useCallback(() => fileInputRef.current?.click(), []);
-          
-          const handleCreateFolder = (name) => {
-            if (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
-              showNotification('Այս անունով թղթապանակ արդեն գոյություն ունի։', 'error'); return;
-            }
-            const newFolder = { id: crypto.randomUUID(), name };
-            setFolders(prev => [...prev, newFolder]);
-            showNotification(`'${name}' թղթապանակը ստեղծված է։`, 'success');
-          };
-          
-          const handleEditFolder = (folderId, newName) => {
-            if (folders.some(f => f.name.toLowerCase() === newName.toLowerCase() && f.id !== folderId)) {
-                showNotification('Այս անունով թղթապանակ արդեն գոյություն ունի։', 'error'); return;
-            }
-            setFolders(prev => prev.map(f => f.id === folderId ? { ...f, name: newName } : f));
-            setModalState({ isOpen: false });
-            showNotification('Թղթապանակի անունը հաջողությամբ փոխվեց։', 'success');
-          };
-
-          const handleCopyFolder = (folderToCopy) => {
-            let newName = `Copy of ${folderToCopy.name}`; let counter = 1;
-            while (folders.some(f => f.name.toLowerCase() === newName.toLowerCase())) {
-                counter++; newName = `Copy (${counter}) of ${folderToCopy.name}`;
-            }
-            const newFolder = { id: crypto.randomUUID(), name: newName };
-            const filesToCopy = backups.filter(b => b.folderId === folderToCopy.id);
-            const newFiles = filesToCopy.map(file => ({ ...file, id: crypto.randomUUID(), folderId: newFolder.id }));
-            setFolders(prev => [...prev, newFolder]);
-            setBackups(prev => [...prev, ...newFiles]);
-            showNotification(`'${folderToCopy.name}' թղթապանակը և դրա պարունակությունը պատճենվեցին։`, 'success');
-          };
-
-          const confirmDeleteFolder = () => {
-            const folderToDelete = modalState.data; if (!folderToDelete) return;
-            setFolders(prev => prev.filter(f => f.id !== folderToDelete.id));
-            setBackups(prev => prev.filter(b => b.folderId !== folderToDelete.id));
-            if(selectedFolder.id === folderToDelete.id) {
-                setSelectedFolder({ id: null, name: 'Հիմնական' });
-            }
-            setModalState({ isOpen: false });
-            showNotification(`'${folderToDelete.name}' թղթապանակը և դրա պարունակությունը ջնջվեցին։`, 'success');
-          };
-
-          const handleMoveFile = (backupId, targetFolderId) => {
-              setBackups(prev => prev.map(b => b.id === backupId ? { ...b, folderId: targetFolderId } : b));
-              setModalState({ isOpen: false });
-              showNotification('Ֆայլը հաջողությամբ տեղափոխվեց։', 'success');
-          };
-
-          return (
-            <div className="min-h-screen bg-gray-900 text-gray-200 font-sans">
-              <Header isLoggedIn={isLoggedIn} onLoginClick={() => openModal('login')} onLogoutClick={handleLogout} />
-              <main className="container mx-auto p-4 md:p-8">
-                {isLoggedIn ? (
-                  <>
-                    <StorageInfo used={usedStorage} total={TOTAL_STORAGE_BYTES} />
-                    <FolderView folders={folders} onFolderCreate={handleCreateFolder} onFolderSelect={(id, name) => setSelectedFolder({id, name})} onShowRoot={() => setSelectedFolder({id: null, name: 'Հիմնական'})} onFolderEdit={(folder) => openModal('editFolder', folder)} onFolderCopy={handleCopyFolder} onFolderDelete={(folder) => openModal('deleteFolder', folder)} />
-                    <div className="mt-8 bg-gray-800 shadow-lg rounded-lg p-4 md:p-6">
-                      <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
-                        <h2 className="text-xl font-bold text-white w-full md:w-auto text-center md:text-left">Ֆայլեր {selectedFolder.name}-ում</h2>
-                        <input type="text" placeholder="Որոնել..." className="w-full md:w-1/3 bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-                        <button onClick={triggerFileImport} className="w-full md:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition"><PlusIcon /> Ներմուծել</button>
-                        <input type="file" ref={fileInputRef} onChange={handleFileImport} className="hidden" />
-                      </div>
-                      <BackupTable backups={paginatedBackups} onDeleteClick={(backup) => openModal('delete', backup)} onEditClick={(backup) => openModal('edit', backup)} onExportClick={handleExport} onMoveClick={(backup) => openModal('move', backup)} currentPage={currentPage} itemsPerPage={ITEMS_PER_PAGE} />
-                      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-                    </div>
-                  </>
-                ) : (
-                    <div className="text-center py-20">
-                        <h2 className="text-3xl font-bold text-white mb-4">AI QEZ BACKUP</h2>
-                        <p className="text-gray-400 text-lg">Անվտանգ պահուստավորման կառավարման ծրագիր՝ գաղտնաբառով պաշտպանված:</p>
-                        <p className="text-gray-400 text-lg">Իրական ժամանակի վերահսկմամբ և ամբողջական հնարավորություններով ձեր տեղական պահեստի համար։</p>
-                    </div>
-                )}
-              </main>
-              {modalState.isOpen && (modalState.action === 'login' || modalState.action === 'delete') && ( <PasswordPromptModal action={modalState.action} error={modalState.error} onClose={() => setModalState({ isOpen: false })} onSubmit={modalState.action === 'login' ? handleLogin : handleDelete} /> )}
-              {modalState.isOpen && modalState.action === 'edit' && ( <EditModal backup={modalState.data} onClose={() => setModalState({ isOpen: false })} onSave={handleSaveBackupName} /> )}
-              {modalState.isOpen && modalState.action === 'move' && ( <MoveModal backup={modalState.data} folders={folders} onClose={() => setModalState({ isOpen: false })} onMove={handleMoveFile} /> )}
-              {modalState.isOpen && modalState.action === 'editFolder' && ( <EditFolderModal folder={modalState.data} onClose={() => setModalState({ isOpen: false })} onSave={handleEditFolder} /> )}
-              {modalState.isOpen && modalState.action === 'deleteFolder' && ( <ConfirmDeleteModal itemType="թղթապանակը" itemName={modalState.data.name} onClose={() => setModalState({ isOpen: false })} onConfirm={confirmDeleteFolder} /> )}
-              <Notification message={notification.message} type={notification.type} show={notification.show} />
-            </div>
-          );
+            return <MainApplication />;
         };
 
         // --- From index.tsx (rendering logic) ---
@@ -746,59 +821,5 @@
         const root = ReactDOM.createRoot(rootElement);
         root.render(<React.StrictMode><App /></React.StrictMode>);
     </script>
-
-    <script>
-    async function checkMaintenance() {
-      try {
-        const response = await fetch("maintenance.json?nocache=" + new Date().getTime());
-        const data = await response.json();
-
-        const now = new Date();
-        const start = new Date(data.start);
-        const end = new Date(data.end);
-
-        if (now >= start && now <= end) {
-          document.getElementById("tool").style.display = "none";
-          document.getElementById("maintenance").style.display = "block";
-        } else {
-          document.getElementById("tool").style.display = "block";
-          document.getElementById("maintenance").style.display = "none";
-        }
-      } catch (e) {
-        console.error("Չհաջողվեց կարդալ maintenance.json", e);
-      }
-    }
-
-    checkMaintenance();
-    setInterval(checkMaintenance, 30000);
-  </script>
-<script>
-    async function checkMaintenance() {
-      try {
-        const response = await fetch("maintenance.json?nocache=" + new Date().getTime());
-        const data = await response.json();
-
-        const now = new Date();
-        const start = new Date(data.start);
-        const end = new Date(data.end);
-
-        if (now >= start && now <= end) {
-          document.getElementById("tool").style.display = "none";
-          document.getElementById("maintenance").style.display = "block";
-        } else {
-          document.getElementById("tool").style.display = "block";
-          document.getElementById("maintenance").style.display = "none";
-        }
-      } catch (e) {
-        console.error("Չհաջողվեց կարդալ maintenance.json", e);
-      }
-    }
-
-    // Առաջին ստուգում
-    checkMaintenance();
-    // Ամեն 30 վայրկյանը մեկ նոր ստուգում
-    setInterval(checkMaintenance, 30000);
-  </script>
 </body>
 </html>
-
