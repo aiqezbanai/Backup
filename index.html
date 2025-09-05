@@ -645,48 +645,29 @@
     </script>
 
     <script>
-(function() {
-    const maintenancePage = "Maintenance.html";
-    const mainPage = "index.html";
-
-    async function fetchMaintenanceWindows() {
-        try {
-            const response = await fetch("maintenance.json");
-            return await response.json();
-        } catch (error) {
-            console.error("Չհաջողվեց բեռնել maintenance.json", error);
-            return [];
-        }
-    }
-
     async function checkMaintenance() {
-        const windows = await fetchMaintenanceWindows();
+      try {
+        const response = await fetch("maintenance.json?nocache=" + new Date().getTime());
+        const data = await response.json();
+
         const now = new Date();
-        let inMaintenance = false;
+        const start = new Date(data.start);
+        const end = new Date(data.end);
 
-        for (const window of windows) {
-            const start = new Date(window.start);
-            const end = new Date(window.end);
-            if (now >= start && now <= end) {
-                inMaintenance = true;
-                break;
-            }
+        if (now >= start && now <= end) {
+          document.getElementById("tool").style.display = "none";
+          document.getElementById("maintenance").style.display = "block";
+        } else {
+          document.getElementById("tool").style.display = "block";
+          document.getElementById("maintenance").style.display = "none";
         }
-
-        const currentPage = window.location.pathname.split("/").pop();
-
-        if (inMaintenance && currentPage !== maintenancePage) {
-            window.location.href = maintenancePage;
-        } else if (!inMaintenance && currentPage === maintenancePage) {
-            window.location.href = mainPage;
-        }
+      } catch (e) {
+        console.error("Չհաջողվեց կարդալ maintenance.json", e);
+      }
     }
 
-    // Անմիջապես ստուգում
     checkMaintenance();
-    // Ամեն 30 վայրկյանը մեկ նորից ստուգում
     setInterval(checkMaintenance, 30000);
-})();
-</script>
+  </script>
 </body>
 </html>
