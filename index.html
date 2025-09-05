@@ -1,3 +1,4 @@
+<!-- Last Update - (05 September 2025) -->
 <!DOCTYPE html>
 <html lang="hy">
 <head>
@@ -27,7 +28,7 @@
             animation: fade-in-scale 0.3s forwards;
         }
 
-        /* Maintenance էջի ոճերը */
+        /* Styles for the Maintenance page, adapted from Maintenance.html */
         .maintenance-body {
             font-family: "Verdana", sans-serif;
         }
@@ -68,31 +69,20 @@
         // ===================================================================================
         // Սպասարկման էջի, ռեժիմի կարգավորում
         // ===================================================================================
-        // Այս ֆունկցիան ապահովում է, որ (5) րոպեանոց հետհաշվարկը պահպանվի էջը վերաբեռնելիս։
-        const getPersistentMaintenanceSchedule = () => {
-            const END_TIME_KEY = 'maintenanceEndTime';
-            const DURATION_MINUTES = 3;
-
-            let endTimeStr = localStorage.getItem(END_TIME_KEY);
-            let endTime = endTimeStr ? new Date(endTimeStr) : null;
-
-            // Եթե պահպանված ժամանակ չկա, կամ այն անցել է, ստեղծում ենք նորը։
-            if (!endTime || endTime < new Date()) {
-                endTime = new Date(new Date().getTime() + DURATION_MINUTES * 60 * 1000);
-                localStorage.setItem(END_TIME_KEY, endTime.toISOString());
-            }
-
-            const startTime = new Date(endTime.getTime() - DURATION_MINUTES * 60 * 1000);
-
-            return {
-                start: startTime.toISOString(),
-                end: endTime.toISOString(),
-            };
-        };
-        
-        // Օգտագործում ենք միայն պահպանվող դինամիկ ժամանակացույցը։
+        // Այստեղ կարող եք ավելացնել տեխնիկական սպասարկման ժամանակահատվածները։
+        // Օգտագործեք 'YYYY-MM-DDTHH:mm:ss' ձևաչափը։
         const maintenanceSchedules = [
-            getPersistentMaintenanceSchedule()
+             {
+                // Փորձնական օրինակ՝ սպասարկում, որը սկսվում է հիմա և տևում է 2 րոպե։
+                // Փոխեք այս ամսաթվերը ձեր իրական սպասարկման ժամանակացույցին համապատասխան։
+                start: '2025-09-05T17:10:00', // Ժամանակը ճշգրտված է ընթացիկին համապատասխան
+                end: '2025-09-05T17:12:00'
+            },
+            {
+                // Ապագա սպասարկման մեկ այլ օրինակ
+                start: '2026-01-01T10:00:00', 
+                end: '2026-01-01T12:00:00'
+            }
         ];
 
         // ===================================================================================
@@ -142,7 +132,7 @@
                                     Տեխնիկական Սպասարկում
                                 </h1>
                                 <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 text-gray-300">
-                                    Մեր կայքը ներկայումս ենթարկվում է տեխնիկական սպասարկման։ Մենք աշխատում ենք մեր ծառայությունները բարելավելու ուղղությամբ և շուտով կլինենք հասանելի:
+                                    Այս պահին կայքը գտնվում է տեխնիկական սպասարկման փուլում։ Մեր աշխատակիցները աշխատում են մեր ծառայությունները բարելավելու ուղղությամբ և շուտով կայքը հասանելի կլինի:
                                 </p>
                                 {Object.keys(timeLeft).length > 0 ? (
                                     <>
@@ -168,7 +158,7 @@
                                     </>
                                 ) : (
                                     <div className="col-span-2 sm:col-span-4 text-2xl md:text-3xl font-bold p-6 bg-green-500/20 rounded-lg">
-                                        Կայքը շուտով հասանելի կլինի:
+                                        Կայքն արդեն հասանելի է:
                                     </div>
                                 )}
                             </div>
@@ -521,9 +511,9 @@
                 if (totalPages <= 1) return null;
                 return (
                     <div className="flex justify-center items-center mt-6 space-x-4">
-                        <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Նախորդ</button>
+                        <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Նախորդ էջ</button>
                         <span className="text-gray-400">Էջ {currentPage} / {totalPages}</span>
-                        <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Հաջորդ</button>
+                        <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed">Հաջորդ էջ</button>
                     </div>
                 );
             };
@@ -801,8 +791,8 @@
                 // 1. Ստուգում էջի առաջին բեռնման ժամանակ
                 checkMaintenanceStatus();
 
-                // 2. Ստուգում յուրաքանչյուր 10 վայրկյանը մեկ
-                const intervalId = setInterval(checkMaintenanceStatus, 10000);
+                // 2. Ստուգում յուրաքանչյուր 5 վայրկյանը մեկ
+                const intervalId = setInterval(checkMaintenanceStatus, 5000);
 
                 // Մաքրում ենք interval-ը, երբ կոմպոնենտը հեռացվում է
                 return () => clearInterval(intervalId);
@@ -821,128 +811,5 @@
         const root = ReactDOM.createRoot(rootElement);
         root.render(<React.StrictMode><App /></React.StrictMode>);
     </script>
-	
-	
- <!-- Կայքի անվտանգության ամենաբարձր մակարդակի սկրիպտի - Սկիզբ -->
-	<script>
-(function() {
-    // Թույլատրված տարրերը (որոնման դաշտերը)
-    function isAllowedInput(element) {
-        return element.tagName.toLowerCase() === 'input' &&
-               (element.type === 'search' || element.type === 'text') ||
-               element.tagName.toLowerCase() === 'textarea';
-    }
-
-    // Կանխել աջ սեղմումը (Right-click)
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-
-    // Կանխել ձախ և աջ սեղմումները
-    document.addEventListener('mousedown', function(e) {
-        if (e.button === 2 || e.button === 0) { // 2 - աջ կոճակ, 0 - ձախ կոճակ
-            e.preventDefault();
-        }
-    });
-
-    // Կանխել "View Source" և "Inspect Element"
-    document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||  // Ctrl + U
-            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||  // Ctrl + Shift + I / J / C
-            e.key === 'F12') {  // F12
-            e.preventDefault();
-        }
-    });
-
-    // Կանխել տեքստի ընտրությունը
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-    });
-
-    // Կանխել պատճենումը
-    document.addEventListener('copy', function(e) {
-        e.preventDefault();
-    });
-
-    // Կանխել բովանդակության տեղադրումը
-    document.addEventListener('paste', function(e) {
-        e.preventDefault();
-    });
-
-    // Կանխել "Պահպանել որպես" և պատկերների պահպանումը
-    document.addEventListener('contextmenu', function(e) {
-        if (e.target.tagName.toLowerCase() === 'img' || e.target.tagName.toLowerCase() === 'video') {
-            e.preventDefault();
-        }
-    });
-
-    // Կանխել "Print Screen" (Screenshot)
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'PrintScreen') {
-            e.preventDefault();
-        }
-    });
-
-    // Մթնել էկրանը՝ սքրինշոթերը կանխելու համար
-    let isDimmed = false;
-    const dimScreen = () => {
-        if (!isDimmed) {
-            let overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-            overlay.style.zIndex = '9999';
-            document.body.appendChild(overlay);
-            isDimmed = true;
-            setTimeout(() => {
-                overlay.remove();
-                isDimmed = false;
-            }, 3000); // 3 վայրկյան հետո հեռացնել մթնեցումը
-        }
-    };
-
-    // Հետևել սքրինշոթի փորձերին
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'PrintScreen') {
-            dimScreen();
-        }
-    });
-
-    // Կանխել ստեղնաշարի ցանկացած օգտագործում, բացի որոնման դաշտից
-    document.addEventListener('keydown', function(e) {
-        if (!isAllowedInput(document.activeElement)) {
-            e.preventDefault();
-        }
-    });
-
-    // Կանխել "Drag & Drop"-ը, որպեսզի բովանդակությունը չտեղափոխվի
-    document.addEventListener('dragstart', function(e) {
-        e.preventDefault();
-    });
-
-    document.addEventListener('drop', function(e) {
-        e.preventDefault();
-    });
-
-    // Հետևել էջի տեսանելիության փոփոխություններին (օգտագործողների փորձերը բացահայտելու համար)
-    window.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            dimScreen();
-        }
-    });
-
-    // Կանխել տպումը (Ctrl + P)
-    document.addEventListener('keydown', function(e) {
-        if ((e.ctrlKey && e.key === 'p') || e.key === 'F12') {
-            e.preventDefault();
-        }
-    });
-
-})();
-</script>
-<!-- Կայքի անվտանգության ամենաբարձր մակարդակի սկրիպտի - Ավարտ -->
 </body>
 </html>
