@@ -27,7 +27,7 @@
             animation: fade-in-scale 0.3s forwards;
         }
 
-        /* Styles for the Maintenance page, adapted from Maintenance.html */
+        /* Maintenance էջի ոճերը */
         .maintenance-body {
             font-family: "Verdana", sans-serif;
         }
@@ -66,12 +66,12 @@
         const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
         // ===================================================================================
-        // MAINTENANCE MODE CONFIGURATION
+        // Սպասարկման էջի, ռեժիմի կարգավորում
         // ===================================================================================
         // Այս ֆունկցիան ապահովում է, որ 15 րոպեանոց հետհաշվարկը պահպանվի էջը վերաբեռնելիս։
         const getPersistentMaintenanceSchedule = () => {
             const END_TIME_KEY = 'maintenanceEndTime';
-            const DURATION_MINUTES = 15;
+            const DURATION_MINUTES = 2;
 
             let endTimeStr = localStorage.getItem(END_TIME_KEY);
             let endTime = endTimeStr ? new Date(endTimeStr) : null;
@@ -96,7 +96,7 @@
         ];
 
         // ===================================================================================
-        // MAINTENANCE PAGE COMPONENT (Countdown Timer)
+        // Սպասարկման էջի բաղադրիչ (Countdown Timer)
         // ===================================================================================
         const MaintenancePage = ({ schedule }) => {
             const calculateTimeLeft = () => {
@@ -182,7 +182,7 @@
         };
 
         // ===================================================================================
-        // MAIN APPLICATION (Existing code from your index.html)
+        // Հիմնական հավելված (Ձեր index.html-ի հիմնական հավելվածի կոդը)
         // ===================================================================================
         const MainApplication = () => {
             // --- From constants.ts ---
