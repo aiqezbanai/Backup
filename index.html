@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI QEZ BACKUP</title>
+  <meta charset="UTF-8">
+  <title>AI QEZ BACKUP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,8 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        @keyframes fade-in-scale {
+  <style>
+    #tool { display: none; }
+    #maintenance { display: none; font-size: 22px; color: red; text-align: center; margin-top: 50px; }
+      @keyframes fade-in-scale {
             from {
                 opacity: 0;
                 transform: scale(0.95);
@@ -58,9 +59,21 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5); /* 50% black transparency */
         }
-    </style>
+  </style>
 </head>
 <body class="bg-gray-900">
+  <div id="tool">
+<h2 className="text-3xl font-bold text-white mb-4">AI QEZ BACKUP</h2>
+                        <p className="text-gray-400 text-lg">Անվտանգ պահուստավորման կառավարման ծրագիր՝ գաղտնաբառով պաշտպանված:</p>
+                        <p className="text-gray-400 text-lg">Իրական ժամանակի վերահսկմամբ և ամբողջական հնարավորություններով ձեր տեղական պահեստի համար։</p>
+  </div>
+
+  <div id="maintenance">
+    <h1>Տեխնիկական Սպասարկում</h1>
+    <p>Մեր կայքը ներկայումս ենթարկվում է տեխնիկական սպասարկման։</p>
+    <p>Մենք աշխատում ենք մեր ծառայությունները բարելավելու ուղղությամբ և շուտով կլինենք հասանելի:</p>
+    <p>Խնդրում ենք վերադառնալ սահմանված ժամկետից հետո։</p>
+  </div>
 
     <!-- Main Content Wrapper -->
     <div class="flex flex-col min-h-screen justify-between p-4 sm:p-6 md:p-8">
@@ -759,5 +772,33 @@
     checkMaintenance();
     setInterval(checkMaintenance, 30000);
   </script>
+<script>
+    async function checkMaintenance() {
+      try {
+        const response = await fetch("maintenance.json?nocache=" + new Date().getTime());
+        const data = await response.json();
+
+        const now = new Date();
+        const start = new Date(data.start);
+        const end = new Date(data.end);
+
+        if (now >= start && now <= end) {
+          document.getElementById("tool").style.display = "none";
+          document.getElementById("maintenance").style.display = "block";
+        } else {
+          document.getElementById("tool").style.display = "block";
+          document.getElementById("maintenance").style.display = "none";
+        }
+      } catch (e) {
+        console.error("Չհաջողվեց կարդալ maintenance.json", e);
+      }
+    }
+
+    // Առաջին ստուգում
+    checkMaintenance();
+    // Ամեն 30 վայրկյանը մեկ նոր ստուգում
+    setInterval(checkMaintenance, 30000);
+  </script>
 </body>
 </html>
+
