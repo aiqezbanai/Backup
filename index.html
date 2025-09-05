@@ -576,7 +576,7 @@
 
             const handleLogout = useCallback(() => {
                 setIsLoggedIn(false);
-                if(isLoggedIn) showNotification('Դուք հաջողությամբ դուրս եք եկել համակարգից:', 'success');
+                if(isLoggedIn) showNotification('Ելք համակարգից:', 'success');
             }, [isLoggedIn, showNotification, setIsLoggedIn]);
 
             const resetInactivityTimer = useCallback(() => {
@@ -603,7 +603,7 @@
                 if (hash === ADMIN_PASSWORD_HASH) {
                   setIsLoggedIn(true);
                   setModalState({ isOpen: false });
-                  showNotification('Հաջողված մուտք!', 'success');
+                  showNotification('Մուտք համակարգ!', 'success');
                 } else {
                   setModalState(prev => ({ ...prev, error: 'Անվավեր գաղտնաբառ!' }));
                 }
@@ -691,20 +691,20 @@
             
             const handleCreateFolder = (name) => {
                 if (folders.some(f => f.name.toLowerCase() === name.toLowerCase())) {
-                  showNotification('Այս անունով թղթապանակ արդեն գոյություն ունի։', 'error'); return;
+                  showNotification('թղթապանակ գոյություն ունի։', 'error'); return;
                 }
                 const newFolder = { id: crypto.randomUUID(), name };
                 setFolders(prev => [...prev, newFolder]);
-                showNotification(`'${name}' թղթապանակը ստեղծված է։`, 'success');
+                showNotification(`'${name}' թղթապանակի ստեղծում։`, 'success');
             };
             
             const handleEditFolder = (folderId, newName) => {
                 if (folders.some(f => f.name.toLowerCase() === newName.toLowerCase() && f.id !== folderId)) {
-                    showNotification('Այս անունով թղթապանակ արդեն գոյություն ունի։', 'error'); return;
+                    showNotification('թղթապանակ գոյություն ունի։', 'error'); return;
                 }
                 setFolders(prev => prev.map(f => f.id === folderId ? { ...f, name: newName } : f));
                 setModalState({ isOpen: false });
-                showNotification('Թղթապանակի անունը հաջողությամբ փոխվեց։', 'success');
+                showNotification('Թղթապանակի անվանման փոփոխություն։', 'success');
             };
 
             const handleCopyFolder = (folderToCopy) => {
@@ -734,7 +734,7 @@
             const handleMoveFile = (backupId, targetFolderId) => {
                   setBackups(prev => prev.map(b => b.id === backupId ? { ...b, name: newName } : b));
                   setModalState({ isOpen: false });
-                  showNotification('Ֆայլը հաջողությամբ տեղափոխվեց։', 'success');
+                  showNotification('Ֆայլի հաջող տեղափոխում։', 'success');
             };
 
             return (
