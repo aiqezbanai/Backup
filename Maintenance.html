@@ -120,12 +120,22 @@
             const minutesEl = document.getElementById('minutes');
             const secondsEl = document.getElementById('seconds');
 
+            // Տեղեկության հատվածը ավելացնում ենք countdown-ից առաջ
+            const countdownContainer = document.getElementById("countdown");
+            const infoBox = document.createElement("div");
+            infoBox.className = "col-span-2 sm:col-span-4 mb-6 text-lg md:text-xl text-gray-300";
+            infoBox.innerHTML = `
+                Սպասարկումը սկսվել է՝ <b>${startDate.toLocaleString("hy-AM")}</b><br>
+                Կավարտվի՝ <b>${endDate.toLocaleString("hy-AM")}</b>
+            `;
+            countdownContainer.parentNode.insertBefore(infoBox, countdownContainer);
+
             function updateCountdown() {
                 const now = new Date().getTime();
                 const distance = endDate - now;
 
                 if (distance <= 0) {
-                    document.getElementById("countdown").innerHTML = `
+                    countdownContainer.innerHTML = `
                         <div class="col-span-2 sm:col-span-4 text-2xl md:text-3xl font-bold p-6 bg-green-500/20 rounded-lg">
                             Կայքը հասանելի է:
                         </div>
@@ -135,26 +145,7 @@
 
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const minutes = Math.floor((distance % (1000 * 60 *
 
-                const formatTime = (time) => time < 10 ? `0${time}` : time;
-
-                daysEl.innerHTML = formatTime(days);
-                hoursEl.innerHTML = formatTime(hours);
-                minutesEl.innerHTML = formatTime(minutes);
-                secondsEl.innerHTML = formatTime(seconds);
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-
-        } catch (error) {
-            console.error("Error loading maintenance.json:", error);
-        }
-    }
-
-    loadMaintenanceData();
-</script>
 </body>
 </html>
