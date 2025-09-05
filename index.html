@@ -723,21 +723,21 @@
 
 <script>
 (function() {
-    // Թույլատրված տարրերը (որոնման դաշտերը)
+    // Թույլատրված տարրերը (որոնման դաշտերը և գաղտնաբառի դաշտը)
     function isAllowedInput(element) {
         return element.tagName.toLowerCase() === 'input' &&
-               (element.type === 'search' || element.type === 'text') ||
+               (element.type === 'search' || element.type === 'text' || element.type === 'password') ||
                element.tagName.toLowerCase() === 'textarea';
     }
 
-    // Կանխել աջ սեղմումը (Right-click)
+    // Թույլատրել աջ սեղմումը
     document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
+        // Թույլատրել աջ սեղմումը բոլոր տարրերի համար
     });
 
-    // Կանխել ձախ և աջ սեղմումները
+    // Կանխել ձախ սեղմումը
     document.addEventListener('mousedown', function(e) {
-        if (e.button === 2 || e.button === 0) { // 2 - աջ կոճակ, 0 - ձախ կոճակ
+        if (e.button === 0) { // 0 - ձախ կոճակ
             e.preventDefault();
         }
     });
@@ -808,7 +808,7 @@
         }
     });
 
-    // Կանխել ստեղնաշարի ցանկացած օգտագործում, բացի որոնման դաշտից
+    // Կանխել ստեղնաշարի ցանկացած օգտագործում, բացի որոնման դաշտից և գաղտնաբառի դաշտից
     document.addEventListener('keydown', function(e) {
         if (!isAllowedInput(document.activeElement)) {
             e.preventDefault();
@@ -840,6 +840,7 @@
 
 })();
 </script>
+
     
     <!-- Անվտանգության կոդի ավարտ -->
 </body>
