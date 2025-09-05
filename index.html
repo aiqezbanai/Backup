@@ -313,7 +313,7 @@
                 useEffect(() => { if (backup) setName(backup.name); }, [backup]);
                 const handleSubmit = (e) => {
                     e.preventDefault();
-                    if (!name.trim()) { setError('Անունը չի կարող դատարկ լինել։'); return; }
+                    if (!name.trim()) { setError('Անվանում դաշտը չի կարող դատարկ լինել։'); return; }
                     onSave(backup.id, name.trim());
                 };
                 if (!backup) return null;
@@ -322,7 +322,7 @@
                     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300" onClick={onClose}>
                         <div className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-11/12 max-w-md transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale" onClick={(e) => e.stopPropagation()}>
                             <h2 className="text-2xl font-bold text-white mb-2">Խմբագրել Backup-ը</h2>
-                            <p className="text-gray-400 mb-6">Փոխել backup-ի անունը։</p>
+                            <p className="text-gray-400 mb-6">Փոխել Backup-ի անունը։</p>
                             <form onSubmit={handleSubmit}>
                                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-gray-200 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Մուտքագրել նոր անվանում" autoFocus />
                                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -374,7 +374,7 @@
                 useEffect(() => { if (folder) setName(folder.name); }, [folder]);
                 const handleSubmit = (e) => {
                     e.preventDefault();
-                    if (!name.trim()) { setError('Անունը չի կարող դատարկ լինել։'); return; }
+                    if (!name.trim()) { setError('Անվանում դաշտը չի կարող դատարկ լինել։'); return; }
                     onSave(folder.id, name.trim());
                 };
                 if (!folder) return null;
@@ -404,7 +404,7 @@
                             <h2 className="text-2xl font-bold text-white mb-2">Հաստատել ջնջումը</h2>
                             <p className="text-gray-400 mb-6">
                                 {`Վստա՞հ եք, որ ցանկանում եք ջնջել '${itemName}' ${itemType}-ը։`}
-                                {itemType === 'թղթապանակը' && ' Այս գործողությունը կջնջի նաև դրա ամբողջ պարունակությունը և չի կարող չեղարկվել։'}
+                                {itemType === 'թղթապանակը' && ' Այն չի կարող հետարկվել։'}
                             </p>
                             <div className="flex justify-end space-x-4">
                                 <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-md transition">Չեղարկել</button>
