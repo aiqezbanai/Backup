@@ -642,5 +642,50 @@
         const root = ReactDOM.createRoot(rootElement);
         root.render(<React.StrictMode><App /></React.StrictMode>);
     </script>
+
+    <script>
+(function() {
+    const maintenancePage = "Maintenance.html";
+    const mainPage = "index.html";
+
+    async function fetchMaintenanceWindows() {
+        try {
+            const response = await fetch("maintenance.json");
+            return await response.json();
+        } catch (error) {
+            console.error("Չհաջողվեց բեռնել maintenance.json", error);
+            return [];
+        }
+    }
+
+    async function checkMaintenance() {
+        const windows = await fetchMaintenanceWindows();
+        const now = new Date();
+        let inMaintenance = false;
+
+        for (const window of windows) {
+            const start = new Date(window.start);
+            const end = new Date(window.end);
+            if (now >= start && now <= end) {
+                inMaintenance = true;
+                break;
+            }
+        }
+
+        const currentPage = window.location.pathname.split("/").pop();
+
+        if (inMaintenance && currentPage !== maintenancePage) {
+            window.location.href = maintenancePage;
+        } else if (!inMaintenance && currentPage === maintenancePage) {
+            window.location.href = mainPage;
+        }
+    }
+
+    // Անմիջապես ստուգում
+    checkMaintenance();
+    // Ամեն 30 վայրկյանը մեկ նորից ստուգում
+    setInterval(checkMaintenance, 30000);
+})();
+</script>
 </body>
 </html>
