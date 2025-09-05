@@ -536,7 +536,7 @@
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                             <button onClick={onShowRoot} className="flex flex-col items-center justify-center p-4 bg-gray-700 hover:bg-gray-600 rounded-lg transition text-center group">
-                                <BackIcon /> <span className="mt-1 text-sm">Հիմնական</span>
+                                <BackIcon /> <span className="mt-1 text-sm">Հիմնական ցանկ</span>
                             </button>
                             {folders.map(folder => (
                                 <div key={folder.id} className="relative bg-gray-700 rounded-lg group">
@@ -564,7 +564,7 @@
             const [notification, setNotification] = useState({ show: false, message: '', type: 'success' });
             const [currentPage, setCurrentPage] = useState(1);
             const [isImporting, setIsImporting] = useState(false);
-            const [selectedFolder, setSelectedFolder] = useState({ id: null, name: 'Հիմնական' });
+            const [selectedFolder, setSelectedFolder] = useState({ id: null, name: 'Հիմնական ցանկ' });
 
             const fileInputRef = useRef(null);
             const inactivityTimerRef = useRef(null);
@@ -725,7 +725,7 @@
                 setFolders(prev => prev.filter(f => f.id !== folderToDelete.id));
                 setBackups(prev => prev.filter(b => b.folderId !== folderToDelete.id));
                 if(selectedFolder.id === folderToDelete.id) {
-                    setSelectedFolder({ id: null, name: 'Հիմնական' });
+                    setSelectedFolder({ id: null, name: 'Հիմնական ցանկ' });
                 }
                 setModalState({ isOpen: false });
                 showNotification(`'${folderToDelete.name}' թղթապանակը և դրա պարունակությունը ջնջվեցին։`, 'success');
@@ -744,7 +744,7 @@
                     {isLoggedIn ? (
                       <>
                         <StorageInfo used={usedStorage} total={TOTAL_STORAGE_BYTES} />
-                        <FolderView folders={folders} onFolderCreate={handleCreateFolder} onFolderSelect={(id, name) => setSelectedFolder({id, name})} onShowRoot={() => setSelectedFolder({id: null, name: 'Հիմնական'})} onFolderEdit={(folder) => openModal('editFolder', folder)} onFolderCopy={handleCopyFolder} onFolderDelete={(folder) => openModal('deleteFolder', folder)} />
+                        <FolderView folders={folders} onFolderCreate={handleCreateFolder} onFolderSelect={(id, name) => setSelectedFolder({id, name})} onShowRoot={() => setSelectedFolder({id: null, name: 'Հիմնական ցանկ'})} onFolderEdit={(folder) => openModal('editFolder', folder)} onFolderCopy={handleCopyFolder} onFolderDelete={(folder) => openModal('deleteFolder', folder)} />
                         <div className="mt-8 bg-gray-800 shadow-lg rounded-lg p-4 md:p-6">
                           <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
                             <h2 className="text-xl font-bold text-white w-full md:w-auto text-center md:text-left">Ֆայլեր {selectedFolder.name}-ում</h2>
