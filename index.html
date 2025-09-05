@@ -717,7 +717,7 @@
                 const newFiles = filesToCopy.map(file => ({ ...file, id: crypto.randomUUID(), folderId: newFolder.id }));
                 setFolders(prev => [...prev, newFolder]);
                 setBackups(prev => [...prev, ...newFiles]);
-                showNotification(`'${folderToCopy.name}' թղթապանակը և դրա պարունակությունը պատճենվեցին։`, 'success');
+                showNotification(`'${folderToCopy.name}' թղթապանակը պատճենվեց։`, 'success');
             };
 
             const confirmDeleteFolder = () => {
@@ -728,7 +728,7 @@
                     setSelectedFolder({ id: null, name: 'Ցանկ' });
                 }
                 setModalState({ isOpen: false });
-                showNotification(`'${folderToDelete.name}' թղթապանակը և դրա պարունակությունը ջնջվեցին։`, 'success');
+                showNotification(`'${folderToDelete.name}' թղթապանակը ջնջվեց։`, 'success');
             };
 
             const handleMoveFile = (backupId, targetFolderId) => {
