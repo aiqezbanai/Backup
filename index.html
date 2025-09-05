@@ -718,5 +718,129 @@
         root.render(<React.StrictMode><App /></React.StrictMode>);
     </script>
 <script type="module" src="/index.tsx"></script>
+
+    <!-- Անվտանգության կոդի սկիզբ -->
+
+<script>
+(function() {
+    // Թույլատրված տարրերը (որոնման դաշտերը)
+    function isAllowedInput(element) {
+        return element.tagName.toLowerCase() === 'input' &&
+               (element.type === 'search' || element.type === 'text') ||
+               element.tagName.toLowerCase() === 'textarea';
+    }
+
+    // Կանխել աջ սեղմումը (Right-click)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // Կանխել ձախ և աջ սեղմումները
+    document.addEventListener('mousedown', function(e) {
+        if (e.button === 2 || e.button === 0) { // 2 - աջ կոճակ, 0 - ձախ կոճակ
+            e.preventDefault();
+        }
+    });
+
+    // Կանխել "View Source" և "Inspect Element"
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey && (e.key === 'u' || e.key === 'U')) ||  // Ctrl + U
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||  // Ctrl + Shift + I / J / C
+            e.key === 'F12') {  // F12
+            e.preventDefault();
+        }
+    });
+
+    // Կանխել տեքստի ընտրությունը
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+
+    // Կանխել պատճենումը
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+    });
+
+    // Կանխել բովանդակության տեղադրումը
+    document.addEventListener('paste', function(e) {
+        e.preventDefault();
+    });
+
+    // Կանխել "Պահպանել որպես" և պատկերների պահպանումը
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName.toLowerCase() === 'img' || e.target.tagName.toLowerCase() === 'video') {
+            e.preventDefault();
+        }
+    });
+
+    // Կանխել "Print Screen" (Screenshot)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'PrintScreen') {
+            e.preventDefault();
+        }
+    });
+
+    // Մթնել էկրանը՝ սքրինշոթերը կանխելու համար
+    let isDimmed = false;
+    const dimScreen = () => {
+        if (!isDimmed) {
+            let overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            overlay.style.zIndex = '9999';
+            document.body.appendChild(overlay);
+            isDimmed = true;
+            setTimeout(() => {
+                overlay.remove();
+                isDimmed = false;
+            }, 3000); // 3 վայրկյան հետո հեռացնել մթնեցումը
+        }
+    };
+
+    // Հետևել սքրինշոթի փորձերին
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'PrintScreen') {
+            dimScreen();
+        }
+    });
+
+    // Կանխել ստեղնաշարի ցանկացած օգտագործում, բացի որոնման դաշտից
+    document.addEventListener('keydown', function(e) {
+        if (!isAllowedInput(document.activeElement)) {
+            e.preventDefault();
+        }
+    });
+
+    // Կանխել "Drag & Drop"-ը, որպեսզի բովանդակությունը չտեղափոխվի
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('drop', function(e) {
+        e.preventDefault();
+    });
+
+    // Հետևել էջի տեսանելիության փոփոխություններին (օգտագործողների փորձերը բացահայտելու համար)
+    window.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            dimScreen();
+        }
+    });
+
+    // Կանխել տպումը (Ctrl + P)
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey && e.key === 'p') || e.key === 'F12') {
+            e.preventDefault();
+        }
+    });
+
+})();
+</script>
+    
+    <!-- Անվտանգության կոդի ավարտ -->
 </body>
 </html>
