@@ -68,10 +68,10 @@
         // ===================================================================================
         // Սպասարկման էջի, ռեժիմի կարգավորում
         // ===================================================================================
-        // Այս ֆունկցիան ապահովում է, որ 15 րոպեանոց հետհաշվարկը պահպանվի էջը վերաբեռնելիս։
+        // Այս ֆունկցիան ապահովում է, որ (5) րոպեանոց հետհաշվարկը պահպանվի էջը վերաբեռնելիս։
         const getPersistentMaintenanceSchedule = () => {
             const END_TIME_KEY = 'maintenanceEndTime';
-            const DURATION_MINUTES = 2;
+            const DURATION_MINUTES = 5;
 
             let endTimeStr = localStorage.getItem(END_TIME_KEY);
             let endTime = endTimeStr ? new Date(endTimeStr) : null;
