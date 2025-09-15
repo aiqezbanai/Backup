@@ -1,5 +1,4 @@
-<!-- version 16 -->
-
+<!-- Version 17 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -490,7 +489,7 @@
             );
         };
         
-        const BackupTable = ({ backups, onAction, currentPage, itemsPerPage, hasPermission }) => {
+        const BackupTable = ({ backups, onAction, currentPage, itemsPerPage, hasPermission, onExport }) => {
             return (
                  <div className="overflow-x-auto">
                     <table className="min-w-full bg-gray-800 text-sm text-left text-gray-300">
@@ -514,7 +513,7 @@
                                     <td className="px-6 py-4 hidden md:table-cell">{formatBytes(backup.size)}</td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center justify-center space-x-2">
-                                            <button onClick={() => { /* Implement export */ }} title="Export" className="text-blue-400 hover:text-blue-300"><ICONS.Download /></button>
+                                            <button onClick={() => onExport(backup)} title="Export" className="text-blue-400 hover:text-blue-300"><ICONS.Download /></button>
                                             {hasPermission('edit') && <button onClick={() => onAction('edit_file', backup)} title="Edit" className="text-yellow-400 hover:text-yellow-300"><ICONS.Edit /></button>}
                                             {hasPermission('move') && <button onClick={() => onAction('move_file', backup)} title="Move" className="text-green-400 hover:text-green-300"><ICONS.Move /></button>}
                                             {hasPermission('delete') && <button onClick={() => onAction('confirm_password_delete', { itemType: 'user_file', itemId: backup.id, itemName: backup.name })} title="Delete" className="text-red-500 hover:text-red-400"><ICONS.Delete /></button>}
@@ -603,7 +602,7 @@
             );
         };
 
-        const UserFileDashboard = ({ currentUser, roles, backups, folders, supportedFormats, showNotification, openLoginModal, onLogout, openModal, onAction }) => {
+        const UserFileDashboard = ({ currentUser, roles, backups, setBackups, folders, supportedFormats, showNotification, openLoginModal, onLogout, openModal, onAction }) => {
             const [searchTerm, setSearchTerm] = useState('');
             const [currentPage, setCurrentPage] = useState(1);
             const [currentFolder, setCurrentFolder] = useState({ id: null, name: 'Root' });
@@ -634,11 +633,14 @@
                 return { files: filesInCurrent };
             }, [userBackups, currentFolder.id, searchTerm]);
             
-            const paginatedBackups = useMemo(() => {
+            useEffect(() => {
                 const newTotalPages = Math.ceil(filteredAndSortedItems.files.length / ITEMS_PER_PAGE);
                 if (currentPage > newTotalPages && newTotalPages > 0) {
                     setCurrentPage(1);
                 }
+            }, [filteredAndSortedItems.files, currentPage]);
+
+            const paginatedBackups = useMemo(() => {
                 const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
                 return filteredAndSortedItems.files.slice(startIndex, startIndex + ITEMS_PER_PAGE);
             }, [filteredAndSortedItems.files, currentPage]);
@@ -646,34 +648,60 @@
             const totalPages = Math.ceil(filteredAndSortedItems.files.length / ITEMS_PER_PAGE);
             const usedStorage = useMemo(() => userBackups.reduce((acc, b) => acc + b.size, 0), [userBackups]);
             
-            const handleFileImport = (e) => {
+            const handleFileImport = async (e) => {
                 const files = e.target.files ? Array.from(e.target.files) : [];
                 if (!files.length) return;
-                
-                let newBackups = [];
-                let currentTotalSize = usedStorage;
-                let errors = [];
 
-                files.forEach(file => {
-                    const fileExtension = '.' + file.name.split('.').pop();
-                    if (!supportedFormats.includes(fileExtension.toLowerCase())) {
-                        errors.push(`File type '${fileExtension}' is not supported for "${file.name}".`);
-                        return;
-                    }
-                    if (currentTotalSize + file.size > userRoleLimits.limit) {
-                        errors.push(`Not enough storage for "${file.name}".`);
-                        return;
-                    }
-                    
-                    const now = new Date();
-                    newBackups.push({
-                        name: file.name, size: file.size,
-                        date: now.toLocaleDateString(), time: now.toLocaleTimeString(),
-                        owner: currentUser, folderId: currentFolder.id,
-                    });
-                    currentTotalSize += file.size;
-                });
+                let currentTotalSize = usedStorage;
+                const errors = [];
+                const newBackupsPromises = [];
                 
+                const readFileAsDataURL = (file) => {
+                    return new Promise((resolve) => {
+                        const fileExtension = '.' + file.name.split('.').pop();
+                        if (!supportedFormats.includes(fileExtension.toLowerCase())) {
+                            errors.push(`File type '${fileExtension}' is not supported for "${file.name}".`);
+                            return resolve(null);
+                        }
+                        if (currentTotalSize + file.size > userRoleLimits.limit) {
+                            errors.push(`Not enough storage for "${file.name}".`);
+                            return resolve(null);
+                        }
+                        if (file.size * 1.33 > 5 * 1024 * 1024) { // Limit file size to ~5MB for localStorage stability
+                            errors.push(`File "${file.name}" is too large (> 5MB) for browser storage.`);
+                            return resolve(null);
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            currentTotalSize += file.size;
+                            const now = new Date();
+                            resolve({
+                                id: generateId(),
+                                name: file.name,
+                                size: file.size,
+                                date: now.toLocaleDateString(),
+                                time: now.toLocaleTimeString(),
+                                owner: currentUser,
+                                folderId: currentFolder.id,
+                                content: event.target.result, // Data URL
+                            });
+                        };
+                        reader.onerror = (error) => {
+                            errors.push(`Error reading file "${file.name}".`);
+                            console.error("FileReader Error:", error);
+                            resolve(null);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                };
+
+                for (const file of files) {
+                    newBackupsPromises.push(readFileAsDataURL(file));
+                }
+
+                const newBackups = (await Promise.all(newBackupsPromises)).filter(Boolean);
+
                 if (newBackups.length > 0) {
                     onAction('import_files', newBackups);
                     showNotification(`${newBackups.length} file(s) imported successfully.`, 'success');
@@ -684,6 +712,19 @@
                 e.target.value = '';
             };
             
+            const handleExportFile = (backup) => {
+                if (!backup.content) {
+                    showNotification('File content is not available for download. This file may have been imported with an older version.', 'error');
+                    return;
+                }
+                const downloadLink = document.createElement('a');
+                downloadLink.href = backup.content;
+                downloadLink.download = backup.name;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            };
+
             const handleCreateFolder = (name) => {
                  if (userRoleLimits.folderLimit !== Infinity && userFolders.length >= userRoleLimits.folderLimit) {
                     showNotification(`Folder limit (${userRoleLimits.folderLimit}) reached.`, 'error');
@@ -725,7 +766,7 @@
                                             </>
                                         }
                                     </div>
-                                    <BackupTable backups={paginatedBackups} onAction={openModal} currentPage={currentPage} itemsPerPage={ITEMS_PER_PAGE} hasPermission={hasPermission} />
+                                    <BackupTable backups={paginatedBackups} onAction={openModal} currentPage={currentPage} itemsPerPage={ITEMS_PER_PAGE} hasPermission={hasPermission} onExport={handleExportFile} />
                                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
                                 </div>
                             </>
@@ -783,7 +824,7 @@
                 <div>
                     <p className="text-sm text-gray-400">{title}</p>
                     <p className="text-3xl font-bold">{value}</p>
-                    <p className="text-xs text-gray-500">{subtext}</p>
+                    <p className="text-xs text-gray-500 truncate" title={subtext}>{subtext}</p>
                 </div>
                 <div className="bg-gray-700 p-3 rounded-full">{icon}</div>
             </div>
@@ -792,16 +833,28 @@
         const DashboardPanelPage = ({ backups, roles, currentUser }) => {
             const usedStorage = useMemo(() => backups.reduce((acc, file) => acc + file.size, 0), [backups]);
             const totalUsers = Object.keys(roles).length;
-            const activeUsers = currentUser ? 1 : 0; // Simplified for this client-side context
+            const activeUsers = currentUser ? 1 : 0; // Simplified for client-side context
+            
+            const storageByRole = useMemo(() => {
+                const usage = {};
+                backups.forEach(backup => {
+                    const roleName = roles[backup.owner]?.name || 'Unknown';
+                    usage[roleName] = (usage[roleName] || 0) + backup.size;
+                });
+                return Object.entries(usage)
+                    .sort(([, sizeA], [, sizeB]) => sizeB - sizeA)
+                    .map(([name, size]) => `${name}: ${formatBytes(size)}`)
+                    .join(' | ');
+            }, [backups, roles]);
 
             return (
                 <div>
                     <h2 className="text-3xl font-bold mb-6">Dashboard</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                         <StatCard title="Total Storage" value={formatBytes(TOTAL_STORAGE_BYTES)} subtext="Total System Capacity" icon={<ICONS.Disk />} />
-                        <StatCard title="Used Storage" value={formatBytes(usedStorage)} subtext={`${((usedStorage / TOTAL_STORAGE_BYTES) * 100).toFixed(2)}% of total capacity`} icon={<ICONS.Disk />} />
+                        <StatCard title="Used Storage" value={formatBytes(usedStorage)} subtext={storageByRole || 'No files stored'} icon={<ICONS.Disk />} />
                         <StatCard title="Total User Roles" value={totalUsers} subtext="All configured roles" icon={<ICONS.Users />} />
-                        <StatCard title="Active User Sessions" value={activeUsers} subtext="Currently logged in" icon={<ICONS.UserActive />} />
+                        <StatCard title="Active User Sessions" value={activeUsers} subtext="Current browser session" icon={<ICONS.UserActive />} />
                     </div>
                 </div>
             );
@@ -810,6 +863,11 @@
         const DashboardContentPage = ({ showNotification }) => {
             const [code, setCode] = useLocalStorage('maintenance_html', INITIAL_MAINTENANCE_HTML);
             const [tempCode, setTempCode] = useState(code);
+            
+            useEffect(() => {
+                setTempCode(code);
+            }, [code]);
+            
             const handleSave = () => {
                 setCode(tempCode);
                 showNotification('Maintenance page content updated.', 'success');
@@ -1422,8 +1480,7 @@
             const handleAction = useCallback((type, data) => {
                 switch(type) {
                     case 'import_files':
-                        const newBackups = data.map((file) => ({...file, id: generateId()}));
-                        setBackups(prev => [...prev, ...newBackups]);
+                        setBackups(prev => [...prev, ...data]);
                         break;
                     case 'create_folder': 
                         if (!currentUser) return;
@@ -1493,12 +1550,15 @@
                 setIntegrations({});
                 setSystemBackups([]);
                 setMaintenanceEndTime(null);
-                setMaintenanceHtml(INITIAL_MAINTENANCE_HTML);
-                setMaintenanceCss(INITIAL_MAINTENANCE_CSS);
-                setMaintenanceJs(INITIAL_MAINTENANCE_JS);
+                // The maintenance page content is in localStorage, so it will persist unless cleared.
+                // For a true factory reset, we might want to remove these keys.
+                window.localStorage.removeItem('maintenance_html');
+                window.localStorage.removeItem('maintenance_css');
+                window.localStorage.removeItem('maintenance_js');
 
                 showNotification('System has been reset to factory settings.', 'success');
                 setModal({ type: null });
+                window.location.reload(); // Reload to apply initial settings
             };
 
             const handleSetMaintenance = (minutes) => {
@@ -1529,7 +1589,7 @@
                             />;
                 }
                 return <UserFileDashboard 
-                            currentUser={currentUser} roles={roles} backups={backups} folders={folders}
+                            currentUser={currentUser} roles={roles} backups={backups} setBackups={setBackups} folders={folders}
                             supportedFormats={supportedFormats} showNotification={showNotification}
                             openLoginModal={() => setModal({ type: 'login' })}
                             onLogout={() => setModal({ type: 'confirm_logout' })}
