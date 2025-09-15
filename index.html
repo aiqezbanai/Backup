@@ -1,4 +1,4 @@
-<!-- Version 17 -->
+<!-- Version 18 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,13 +135,14 @@
                     return item ? JSON.parse(item) : initialValue;
                 } catch (error) { console.error(error); return initialValue; }
             });
-            const setValue = (value) => {
+            const setValue = useCallback((value) => {
                 try {
                     const valueToStore = value instanceof Function ? value(storedValue) : value;
                     setStoredValue(valueToStore);
                     window.localStorage.setItem(key, JSON.stringify(valueToStore));
                 } catch (error) { console.error(error); }
-            };
+            }, [key, storedValue]);
+
             return [storedValue, setValue];
         }
 
@@ -1424,6 +1425,36 @@
 
             const isMaintenanceActive = useMemo(() => maintenanceEndTime && new Date().getTime() < maintenanceEndTime, [maintenanceEndTime]);
             const userRole = useMemo(() => currentUser ? roles[currentUser] : null, [currentUser, roles]);
+
+            // Effect to sync state across browser tabs
+            useEffect(() => {
+                const syncState = (e) => {
+                    const { key, newValue } = e;
+                    if (newValue === null) return; // Key was removed
+                    try {
+                        const parsedValue = JSON.parse(newValue);
+                        switch (key) {
+                            case 'currentUser': setCurrentUser(parsedValue); break;
+                            case 'roles': setRoles(parsedValue); break;
+                            case 'backups': setBackups(parsedValue); break;
+                            case 'folders': setFolders(parsedValue); break;
+                            case 'supported_formats': setSupportedFormats(parsedValue); break;
+                            case 'integrations': setIntegrations(parsedValue); break;
+                            case 'system_backups': setSystemBackups(parsedValue); break;
+                            case 'maintenanceEndTime': setMaintenanceEndTime(parsedValue); break;
+                            default: break;
+                        }
+                    } catch (error) {
+                        console.error(`Error syncing localStorage key "${key}":`, error);
+                    }
+                };
+
+                window.addEventListener('storage', syncState);
+                return () => {
+                    window.removeEventListener('storage', syncState);
+                };
+            }, [setCurrentUser, setRoles, setBackups, setFolders, setSupportedFormats, setIntegrations, setSystemBackups, setMaintenanceEndTime]);
+
 
             const showNotification = useCallback((message, type = 'success') => {
                 setNotification({ show: true, message, type });
